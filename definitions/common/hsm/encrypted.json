@@ -1,0 +1,14 @@
+{
+  "properties": {
+    "data": {
+      "enabled": false
+    },
+    "mask": {
+      "type": "keyword"
+    },
+    "hash": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    }
+  }
+}

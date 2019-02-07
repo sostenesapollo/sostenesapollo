@@ -1,0 +1,45 @@
+kubernetes: https://atl-k8s-api.corp.pps.io:6443
+elastic:
+  - atl-vps-es.corp.pps.io:9200
+memsql:
+  host: atl-vps-mem-ma.corp.pps.io
+  port: 3306
+  user: vortex
+kafka:
+  global:
+    - atl-glb-kaf01.nix.corp.pps.io:9092
+    - atl-glb-kaf02.nix.corp.pps.io:9092
+    - atl-glb-kaf03.nix.corp.pps.io:9092
+    - atl-glb-kaf04.nix.corp.pps.io:9092
+    - atl-glb-kaf05.nix.corp.pps.io:9092
+  local:
+    - atl-vps-kafk01.nix.corp.pps.io:9092
+    - atl-vps-kafk02.nix.corp.pps.io:9092
+    - atl-vps-kafk03.nix.corp.pps.io:9092
+    - atl-vps-kafk04.nix.corp.pps.io:9092
+    - atl-vps-kafk05.nix.corp.pps.io:9092
+  action:
+    - atl-vps-kafk01.nix.corp.pps.io:9092
+    - atl-vps-kafk02.nix.corp.pps.io:9092
+    - atl-vps-kafk03.nix.corp.pps.io:9092
+    - atl-vps-kafk04.nix.corp.pps.io:9092
+    - atl-vps-kafk05.nix.corp.pps.io:9092
+zookeeper:
+  global:
+    - atl-glb-kaf01.nix.corp.pps.io:2181
+    - atl-glb-kaf02.nix.corp.pps.io:2181
+    - atl-glb-kaf03.nix.corp.pps.io:2181
+    - atl-glb-kaf04.nix.corp.pps.io:2181
+    - atl-glb-kaf05.nix.corp.pps.io:2181
+  local:
+    - atl-vps-kafk01.nix.corp.pps.io:2181
+    - atl-vps-kafk02.nix.corp.pps.io:2181
+    - atl-vps-kafk03.nix.corp.pps.io:2181
+    - atl-vps-kafk04.nix.corp.pps.io:2181
+    - atl-vps-kafk05.nix.corp.pps.io:2181
+  action:
+    - atl-vps-kafk01.nix.corp.pps.io:2181
+    - atl-vps-kafk02.nix.corp.pps.io:2181
+    - atl-vps-kafk03.nix.corp.pps.io:2181
+    - atl-vps-kafk04.nix.corp.pps.io:2181
+    - atl-vps-kafk05.nix.corp.pps.io:2181

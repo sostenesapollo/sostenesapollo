@@ -1,0 +1,46 @@
+{
+  "properties": {
+    "@timestamp": {
+      "type": "date",
+      "format": "strict_date_optional_time||epoch_millis"
+    },
+    "@version": {
+      "type": "text"
+    },
+    "agreementType": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "created": {
+      "type": "date",
+      "format": "strict_date_optional_time||epoch_millis"
+    },
+    "creator": {
+      "$ref": "../../common/creatorModifier.json"
+    },
+    "disabled": {
+      "type": "boolean"
+    },
+    "exceptionAddendum": {
+      "type": "text"
+    },
+    "id": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "labels": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "population": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "type": {
+      "type": "text"
+    },
+    "version": {
+      "type": "long"
+    }
+  }
+}

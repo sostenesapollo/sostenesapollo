@@ -1,0 +1,47 @@
+kubernetes: https://naus-k8s-api.corp.pps.io:6443
+elastic:
+- host: naus-vps-es.corp.pps.io
+  port: 9200
+  protocol: https
+memsql:
+  host: naus-vps-mema01.corp.pps.io
+  port: 3306
+  user: vortex
+kafka:
+  global:
+  - naus-glb-kaf01.nix.corp.pps.io:9092
+  - naus-glb-kaf02.nix.corp.pps.io:9092
+  - naus-glb-kaf03.nix.corp.pps.io:9092
+  - naus-glb-kaf04.nix.corp.pps.io:9092
+  - naus-glb-kaf05.nix.corp.pps.io:9092
+  local:
+  - naus-vps-kaf01.nix.corp.pps.io:9092
+  - naus-vps-kaf02.nix.corp.pps.io:9092
+  - naus-vps-kaf03.nix.corp.pps.io:9092
+  - naus-vps-kaf04.nix.corp.pps.io:9092
+  - naus-vps-kaf05.nix.corp.pps.io:9092
+  action:
+  - naus-vps-kaf01.nix.corp.pps.io:9092
+  - naus-vps-kaf02.nix.corp.pps.io:9092
+  - naus-vps-kaf03.nix.corp.pps.io:9092
+  - naus-vps-kaf04.nix.corp.pps.io:9092
+  - naus-vps-kaf05.nix.corp.pps.io:9092
+zookeeper:
+  global:
+  - naus-glb-kaf01.nix.corp.pps.io:2181
+  - naus-glb-kaf02.nix.corp.pps.io:2181
+  - naus-glb-kaf03.nix.corp.pps.io:2181
+  - naus-glb-kaf04.nix.corp.pps.io:2181
+  - naus-glb-kaf05.nix.corp.pps.io:2181
+  local:
+  - naus-vps-kaf01.nix.corp.pps.io:2181
+  - naus-vps-kaf02.nix.corp.pps.io:2181
+  - naus-vps-kaf03.nix.corp.pps.io:2181
+  - naus-vps-kaf04.nix.corp.pps.io:2181
+  - naus-vps-kaf05.nix.corp.pps.io:2181
+  action:
+  - naus-vps-kaf01.nix.corp.pps.io:2181
+  - naus-vps-kaf02.nix.corp.pps.io:2181
+  - naus-vps-kaf03.nix.corp.pps.io:2181
+  - naus-vps-kaf04.nix.corp.pps.io:2181
+  - naus-vps-kaf05.nix.corp.pps.io:2181

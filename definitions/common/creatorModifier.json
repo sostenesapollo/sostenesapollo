@@ -1,0 +1,12 @@
+{
+  "properties" : {
+    "username": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "id": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    }
+  }
+}
