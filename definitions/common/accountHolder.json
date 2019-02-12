@@ -1,0 +1,12 @@
+{
+  "properties" : {
+    "accountHolderName": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "accountNumber": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    }
+  }
+}
