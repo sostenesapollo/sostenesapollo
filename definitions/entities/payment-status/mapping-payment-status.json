@@ -7,9 +7,8 @@
     "@version": {
       "type": "text"
     },
-    "agreementType": {
-      "type": "keyword",
-      "normalizer": "lower_keyword"
+    "version": {
+      "type": "long"
     },
     "created": {
       "type": "date",
@@ -18,29 +17,38 @@
     "creator": {
       "$ref": "../../common/creatorModifier.json"
     },
-    "disabled": {
-      "type": "boolean"
-    },
-    "exceptionAddendum": {
-      "type": "text"
-    },
     "id": {
       "type": "keyword",
       "normalizer": "lower_keyword"
     },
-    "labels": {
+    "tenantId": {
       "type": "keyword",
       "normalizer": "lower_keyword"
     },
-    "population": {
+    "virtualEnvironment": {
       "type": "keyword",
       "normalizer": "lower_keyword"
     },
-    "type": {
-      "type": "text"
+    "nachaId": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
     },
-    "version": {
+    "from": {
+      "$ref": "../../common/accountHolder.json"
+    },
+    "to": {
+      "$ref": "../../common/accountHolder.json"
+    },
+    "amount": {
       "type": "long"
+    },
+    "tenderType": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "effectiveDate": {
+      "type": "date",
+      "format": "strict_date_optional_time||epoch_millis"
     }
   }
 }
