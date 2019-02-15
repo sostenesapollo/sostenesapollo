@@ -1,6 +1,6 @@
 meta:
   key: Payment_Status
-#persistence:
+persistence:
 #  table:
 #    name: PAYMENT_STATUS
 #    database: payment
