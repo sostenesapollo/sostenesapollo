@@ -33,22 +33,62 @@
       "type": "keyword",
       "normalizer": "lower_keyword"
     },
-    "from": {
-      "$ref": "../../common/accountHolder.json"
-    },
-    "to": {
-      "$ref": "../../common/accountHolder.json"
-    },
-    "amount": {
-      "type": "long"
+    "fileId": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
     },
     "tenderType": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "status": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "companyId": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "companyName": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "standardEntryClassCode": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "companyEntryDescription": {
       "type": "keyword",
       "normalizer": "lower_keyword"
     },
     "effectiveDate": {
       "type": "date",
       "format": "strict_date_optional_time||epoch_millis"
+    },
+    "individualId": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "individualName": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "receivingDfiId": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "checkDigit": {
+      "type": "long"
+    },
+    "receivingDFiAccountNumber": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "transactionCode": {
+      "type": "long"
+    },
+    "amount": {
+      "type": "long"
     }
   }
 }
