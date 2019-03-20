@@ -1,21 +1,14 @@
 meta:
   key: Payment_Status
 persistence:
-#  table:
-#    name: PAYMENT_STATUS
-#    database: payment
-#    schema:
-#      $ref: ../../common/table-schema.yaml
-#    view:
-#      default:
-#        $ref: ../../common/default-view.yaml
-#  index:
-#    name: payment_status
-#    mappings:
-#      payment_status:
-#        $ref: ./mapping-payment-status.json
-#    settings:
-#      $ref: ../../common/index-settings.yaml
+  table:
+    name: PAYMENT_STATUS
+    database: eos
+    schema:
+      $ref: ../../common/table-schema.yaml
+    view:
+      default:
+        $ref: ../../common/default-view.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
     name: payment_status
