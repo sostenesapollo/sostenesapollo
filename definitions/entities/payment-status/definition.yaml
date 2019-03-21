@@ -3,7 +3,7 @@ meta:
 persistence:
   table:
     name: PAYMENT_STATUS
-    database: eos
+    database: payment
     schema:
       $ref: ../../common/table-schema.yaml
     view:
