@@ -13,5 +13,7 @@ resources:
     memory: 4Gi
 secrets:
   - name: memsql-password
+  - name: elasticsearch-business-credentials
+    exposeAs: elasticsearch-credentials
   - name: eos-tenant-api-token
     exposeAs: tenant-api-token
