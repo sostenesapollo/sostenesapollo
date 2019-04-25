@@ -1,0 +1,7 @@
+mask:
+  id:
+    $grant: r
+name: payment_status_events_full_read
+meta:
+  key: 'Payment_Status_Events:read'
+  entityKey: Payment_Status_Events
