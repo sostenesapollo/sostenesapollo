@@ -1,0 +1,7 @@
+log:
+  name: eos-tenant-bot-orchestration
+  console:
+    level: info
+
+service-discovery:
+  ingress: http://natl-ksvc.corp.pps.io

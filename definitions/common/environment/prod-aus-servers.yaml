@@ -1,0 +1,45 @@
+kubernetes: https://aus-k8s-api.corp.pps.io:6443
+elastic:
+  - aus-vps-es.corp.pps.io:9200
+memsql:
+  host: aus-vps-mem-ma.corp.pps.io
+  port: 3306
+  user: vortex
+kafka:
+  global:
+    - aus-glb-kaf01.nix.corp.pps.io:9092
+    - aus-glb-kaf02.nix.corp.pps.io:9092
+    - aus-glb-kaf03.nix.corp.pps.io:9092
+    - aus-glb-kaf04.nix.corp.pps.io:9092
+    - aus-glb-kaf05.nix.corp.pps.io:9092
+  local:
+    - aus-vps-kaf01.nix.corp.pps.io:9092
+    - aus-vps-kaf02.nix.corp.pps.io:9092
+    - aus-vps-kaf03.nix.corp.pps.io:9092
+    - aus-vps-kaf04.nix.corp.pps.io:9092
+    - aus-vps-kaf05.nix.corp.pps.io:9092
+  action:
+    - aus-vps-kaf01.nix.corp.pps.io:9092
+    - aus-vps-kaf02.nix.corp.pps.io:9092
+    - aus-vps-kaf03.nix.corp.pps.io:9092
+    - aus-vps-kaf04.nix.corp.pps.io:9092
+    - aus-vps-kaf05.nix.corp.pps.io:9092
+zookeeper:
+  global:
+    - aus-glb-kaf01.nix.corp.pps.io:2181
+    - aus-glb-kaf02.nix.corp.pps.io:2181
+    - aus-glb-kaf03.nix.corp.pps.io:2181
+    - aus-glb-kaf04.nix.corp.pps.io:2181
+    - aus-glb-kaf05.nix.corp.pps.io:2181
+  local:
+    - aus-vps-kaf01.nix.corp.pps.io:2181
+    - aus-vps-kaf02.nix.corp.pps.io:2181
+    - aus-vps-kaf03.nix.corp.pps.io:2181
+    - aus-vps-kaf04.nix.corp.pps.io:2181
+    - aus-vps-kaf05.nix.corp.pps.io:2181
+  action:
+    - aus-vps-kaf01.nix.corp.pps.io:2181
+    - aus-vps-kaf02.nix.corp.pps.io:2181
+    - aus-vps-kaf03.nix.corp.pps.io:2181
+    - aus-vps-kaf04.nix.corp.pps.io:2181
+    - aus-vps-kaf05.nix.corp.pps.io:2181

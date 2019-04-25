@@ -1,0 +1,43 @@
+{
+  "name": "eos-tenant-bot-orchestration",
+  "version": "1.0.0",
+  "description": "eos-tenant-bot-orchestration using the new eos-core-api-tenant",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://git.pps.io/PPS/eos-tenant-bot-orchestration.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node .",
+    "test": "NODE_ENV=test nyc --reporter=text-summary --reporter=html mocha --reporter spec",
+    "test:teamcity": "NODE_ENV=test nyc --reporter=teamcity --reporter=html mocha --reporter mocha-teamcity-reporter",
+    "lint": "eslint test index.js || true",
+    "lint:watch": "npm run lint && watch -p index.js -p 'test/**/*.js' -c 'npm run lint'",
+    "lint:teamcity": "eslint --format 'html' --output-file 'report/lint/report.html' index.js || true"
+  },
+  "dependencies": {
+    "@pps/orchestration": "^1.2.2",
+    "@pps/secrets": "^1.1.0",
+    "@pps/svc-discovery": "^2.0.0",
+    "@pps/tenant-api-client": "^1.1.1",
+    "@pps/vortex-common": "^7.0.0",
+    "config": "^3.0.0",
+    "fs-extra": "^7.0.0",
+    "js-yaml": "^3.13.0",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@pps/eslint-config-pps": "^1.4.0",
+    "@types/node": "^11.11.5",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^5.15.3",
+    "mocha": "^6.0.2",
+    "mocha-teamcity-reporter": "^2.5.2",
+    "nyc": "^13.3.0",
+    "sinon": "^7.3.0",
+    "sinon-chai": "^3.3.0"
+  }
+}

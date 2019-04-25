@@ -1,0 +1,19 @@
+meta:
+  key: streamliner
+name: streamliner
+image: harbor.pps.io/priority/pps-storage-consumer-streamliner:1.69.345-dev
+replicas: 1
+nsxTag: paq.app.vtxVDF
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 1000m
+    memory: 4Gi
+secrets:
+  - name: memsql-password
+  - name: elasticsearch-business-credentials
+    exposeAs: elasticsearch-credentials
+  - name: eos-tenant-api-token
+    exposeAs: tenant-api-token

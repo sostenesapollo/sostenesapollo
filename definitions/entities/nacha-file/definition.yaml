@@ -1,0 +1,6 @@
+meta:
+  key: Nacha_File
+persistence:
+  hdfs:
+    location: /eos/payment/nacha
+name: Nacha File
