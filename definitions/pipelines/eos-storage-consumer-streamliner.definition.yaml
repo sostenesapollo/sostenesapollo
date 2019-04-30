@@ -17,3 +17,5 @@ secrets:
     exposeAs: elasticsearch-credentials
   - name: eos-tenant-api-token
     exposeAs: tenant-api-token
+sla: 100
+maintainer: Development
