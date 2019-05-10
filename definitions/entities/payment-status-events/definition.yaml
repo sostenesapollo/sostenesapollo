@@ -13,5 +13,6 @@ persistence:
     $ref: ../../common/kafka-topic.yaml
     name: payment.status.events
 pipelines:
-  streamliner: []
+  streamliner:
+    replicas: 15
 name: Payment Status Events
