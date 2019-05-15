@@ -10,7 +10,6 @@ columns:
   externalId:
     type: varchar
     length: 255
-    allowNull: !!bool 'false'
     path: _source::$externalId
 keys:
   primary: id
