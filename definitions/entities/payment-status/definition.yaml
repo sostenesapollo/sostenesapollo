@@ -5,7 +5,7 @@ persistence:
     name: PAYMENT_STATUS
     database: payment
     schema:
-      $ref: ../../common/table-schema.yaml
+      $ref: schema.yaml
     view:
       default:
         $ref: ../../common/default-view.yaml
