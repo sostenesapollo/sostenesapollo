@@ -9,25 +9,8 @@ columns:
     allowNull: !!bool 'false'
   externalId:
     type: varchar
+    length: 255
     allowNull: !!bool 'false'
-  status:
-    type: varchar
-    allowNull: !!bool 'false'
-  tenderType:
-    type: varchar
-    allowNull: !!bool 'false'
-  parentNachaId:
-    type: varchar
-    allowNull: !!bool 'false'
-  effectiveDate:
-    type: timestamp
-    allowNull: !!bool 'false'
-  companyId:
-    type: varchar
-    allowNull: !!bool 'false'
-  standardEntryClassCode:
-    type: varchar
-    allowNull: !!bool 'false'
+    path: _source::$externalId
 keys:
   primary: id
-  shard: ['id','externalId','status', 'tenderType','parentNachaId','effectiveDate','companyId','standardEntryClassCode']
