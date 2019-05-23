@@ -3,7 +3,7 @@ meta:
 persistence:
   table:
     name: ABACUS_JOB
-    database: eos
+    database: abacus
     schema:
       $ref: schema.yaml
     view:
