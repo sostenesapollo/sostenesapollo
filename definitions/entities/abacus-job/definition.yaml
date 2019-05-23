@@ -1,0 +1,23 @@
+meta:
+  key: Abacus_Job
+persistence:
+  table:
+    name: ABACUS_JOB
+    database: eos
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: ../../common/default-view.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: abacus.job
+  index:
+    name: abacus.job
+    mappings:
+      job: []
+    settings:
+      $ref: ../../common/index-settings.yaml
+pipelines:
+  streamliner: []
+name: Abacus Job
