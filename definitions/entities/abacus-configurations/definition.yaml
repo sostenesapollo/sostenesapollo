@@ -1,0 +1,15 @@
+meta:
+  key: Abacus_Configuration
+persistence:
+  cassandra:
+    keyspace: abacus
+    name: configuration
+    schema:
+      columns:
+        id:
+          type: text
+        _source:
+          type: text
+      partitioning:
+        - id
+name: Abacus Configuration
