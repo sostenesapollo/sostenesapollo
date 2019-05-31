@@ -30,5 +30,9 @@ columns:
     type: varchar
     length: 255
     path: _source::$standardEntryClassCode
+  parentNachaId:
+    type: varchar
+    length: 255
+    path: _source::$parentNachaId
 keys:
   primary: id
