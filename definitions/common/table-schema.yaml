@@ -7,24 +7,5 @@ columns:
   _source:
     type: JSON
     allowNull: !!bool 'false'
-  status:
-    type: varchar
-    length: 255
-    path: _source::$status
-  tenderType:
-    type: varchar
-    length: 255
-    path: _source::$tenderType
-  effectiveDate:
-    type: datetime
-    path: _source::$effectiveDate
-  companyId:
-    type: varchar
-    length: 255
-    path: _source::$companyId
-  standardEntryClassCode:
-    type: varchar
-    length: 255
-    path: _source::$standardEntryClassCode
 keys:
   primary: id
