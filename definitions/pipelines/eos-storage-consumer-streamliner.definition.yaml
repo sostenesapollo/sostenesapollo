@@ -1,7 +1,7 @@
 meta:
   key: streamliner
 name: streamliner
-image: harbor.pps.io/priority/pps-storage-consumer-streamliner:1.73.361
+image: harbor.pps.io/priority/pps-storage-consumer-streamliner:1.76.364
 replicas: 1
 nsxTag: paq.app.vtxVDF
 resources:
@@ -21,3 +21,4 @@ secrets:
     exposeAs: cassandra-credentials
 sla: 100
 maintainer: Development
+
