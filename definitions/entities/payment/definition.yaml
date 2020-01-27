@@ -1,0 +1,17 @@
+meta:
+  key: Payment
+persistence:
+  table:
+    name: PAYMENT
+    database: payment
+    schema:
+      $ref: ../../common/table-schema.yaml
+    view:
+      default:
+        $ref: ../../common/default-view.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: payment
+pipelines:
+  streamliner: []
+name: Payment
