@@ -1,0 +1,158 @@
+{
+  "dynamic": false,
+  "properties": {
+    "id": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "transactionId": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "amount": {
+      "type": "double"
+    },
+    "creditOrDebit": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "subType": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "effectiveDate": {
+      "type": "date",
+      "format": "strict_date_optional_time||epoch_millis"
+    },
+    "frequency": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "standardEntryClass": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "description": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "descriptivedate": {
+      "type": "date",
+      "format": "strict_date_optional_time||epoch_millis"
+    },
+    "discretionaryData":{
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "checkSerialNumber": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "terminal": {
+      "properties": {
+        "city": {
+          "type": "keyword",
+          "normalizer": "lower_keyword"
+        },
+        "state": {
+          "type": "keyword",
+          "normalizer": "lower_keyword"
+        }
+      }
+    },
+    "institutions": {
+      "properties": {
+        "origin": {
+          "properties": {
+            "identification": {
+              "type": "keyword",
+              "normalizer": "lower_keyword"
+            },
+            "name": {
+              "type": "keyword",
+              "normalizer": "lower_keyword"
+            }
+          }
+        },
+        "destination": {
+          "properties": {
+            "routingNumber": {
+              "type": "keyword",
+              "normalizer": "lower_keyword"
+            },
+            "name": {
+              "type": "keyword",
+              "normalizer": "lower_keyword"
+            }
+          }
+        }
+      }
+    },
+    "companyOrIndividual": {
+      "properties": {
+        "identification":{
+          "type": "keyword",
+          "normalizer": "lower_keyword"
+        },
+        "name":{
+          "type": "keyword",
+          "normalizer": "lower_keyword"
+        },
+        "discretionaryData": {
+          "type": "keyword",
+          "normalizer": "lower_keyword"
+        },
+        "parent": {
+          "properties": {
+            "id": {
+              "type": "keyword",
+              "normalizer": "lower_keyword"
+            },
+            "name": {
+              "type": "keyword",
+              "normalizer": "lower_keyword"
+            }
+          }
+        }
+      }
+    },
+    "receiver": {
+      "properties": {
+        "routingNumber": {
+          "type": "keyword",
+          "normalizer": "lower_keyword"
+        },
+        "accountNumber": {
+          "type": "keyword",
+          "normalizer": "lower_keyword"
+        },
+        "accountType": {
+          "type": "keyword",
+          "normalizer": "lower_keyword"
+        },
+        "identification": {
+          "type": "keyword",
+          "normalizer": "lower_keyword"
+        },
+        "name": {
+          "type": "keyword",
+          "normalizer": "lower_keyword"
+        }
+      }
+    },
+    "addenda":
+      {
+        "type": "nested",
+        "properties": {
+          "typeCode": {
+            "type": "keyword",
+            "normalizer": "lower_keyword"
+          },
+          "description": {
+            "type": "keyword",
+            "normalizer": "lower_keyword"
+          }
+        }
+      }
+  }
+}
