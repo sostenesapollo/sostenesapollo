@@ -1,0 +1,17 @@
+meta:
+  key: ACH_File_Batch
+persistence:
+  table:
+    name: ACH_FILE_BATCH
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: ../../common/default-view.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: ach.file.batch
+pipelines:
+  streamliner: []
+name: ACH File Batch

@@ -1,8 +1,8 @@
 meta:
-  key: Payment_Status
+  key: ACH_Payment
 persistence:
   table:
-    name: PAYMENT_STATUS
+    name: ACH_PAYMENT
     database: payment
     schema:
       $ref: schema.yaml
@@ -11,8 +11,7 @@ persistence:
         $ref: ../../common/default-view.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
-    name: payment.status
+    name: ach.payment
 pipelines:
-  streamliner:
-    replicas: 15
-name: Payment Status
+  streamliner: []
+name: ACH Payment
