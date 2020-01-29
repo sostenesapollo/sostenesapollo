@@ -1,8 +1,8 @@
 meta:
-  key: ACH_Batch
+  key: ACH_File_Batch
 persistence:
   table:
-    name: ACH_BATCH
+    name: ACH_FILE_BATCH
     database: payment
     schema:
       $ref: schema.yaml
@@ -11,7 +11,7 @@ persistence:
         $ref: ../../common/default-view.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
-    name: ach.batch
+    name: ach.file.batch
 pipelines:
   streamliner: []
-name: ACH Batch
+name: ACH File Batch

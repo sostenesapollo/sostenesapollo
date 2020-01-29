@@ -1,8 +1,8 @@
 meta:
-  key: Payment
+  key: ACH_Payment
 persistence:
   table:
-    name: PAYMENT
+    name: ACH_PAYMENT
     database: payment
     schema:
       $ref: schema.yaml
@@ -11,7 +11,7 @@ persistence:
         $ref: ../../common/default-view.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
-    name: payment
+    name: ach.payment
 pipelines:
   streamliner: []
-name: Payment
+name: ACH Payment
