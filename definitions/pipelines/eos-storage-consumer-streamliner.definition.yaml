@@ -1,16 +1,16 @@
 meta:
   key: streamliner
 name: streamliner
-image: harbor.pps.io/priority/pps-storage-consumer-streamliner:1.92.430
+image: harbor.pps.io/priority/pps-storage-consumer-streamliner:1.90.430
 replicas: 1
 nsxTag: paq.app.vtxVDF
 resources:
   requests:
-    cpu: 10m
-    memory: 84Mi
+    cpu: 75m
+    memory: 128Mi
   limits:
-    cpu: 100m
-    memory: 248Mi
+    cpu: 350m
+    memory: 300Mi
 secrets:
   - name: memsql-password
   - name: elasticsearch-business-credentials
