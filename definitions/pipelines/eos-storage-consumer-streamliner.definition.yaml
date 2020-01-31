@@ -1,7 +1,7 @@
 meta:
   key: streamliner
 name: streamliner
-image: harbor.pps.io/priority/pps-storage-consumer-streamliner:1.76.364
+image: harbor.pps.io/priority/pps-storage-consumer-streamliner:1.92.430
 replicas: 1
 nsxTag: paq.app.vtxVDF
 resources:
