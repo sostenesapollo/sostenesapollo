@@ -8,7 +8,7 @@ persistence:
       $ref: schema.yaml
     view:
       default:
-        $ref: ../../common/default-view.yaml
+        $ref: view.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
     name: ach.payment
