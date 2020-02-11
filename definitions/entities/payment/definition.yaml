@@ -1,5 +1,10 @@
 meta:
   key: ACH_Payment
+encryptedPaths:
+  - receiver.accountNumber
+  - receiver.routingNumber
+  - receiver.identification
+  - institutions.destination.routingNumber
 persistence:
   table:
     name: ACH_PAYMENT
