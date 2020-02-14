@@ -14,7 +14,7 @@ persistence:
     view:
       default:
         $ref: view.yaml
-      withFileName:
+      withfilename:
         $ref: viewWithFileName.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
