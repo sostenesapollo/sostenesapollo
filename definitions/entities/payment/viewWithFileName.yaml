@@ -1,3 +1,4 @@
 id: 
 _source: 
 status: '_source::$status'
+fileName: '_source::$fileName'
