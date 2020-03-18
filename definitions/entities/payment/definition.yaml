@@ -1,0 +1,24 @@
+meta:
+  key: ACH_Payment
+encryptedPaths:
+  - receiver.accountNumber
+  - receiver.routingNumber
+  - receiver.identification
+  - institutions.destination.routingNumber
+persistence:
+  table:
+    name: ACH_PAYMENT
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view.yaml
+      withfilename:
+        $ref: viewWithFileName.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: ach.payment
+pipelines:
+  streamliner: []
+name: ACH Payment

@@ -1,19 +1,24 @@
 meta:
   key: streamliner
 name: streamliner
-image: harbor.pps.io/priority/pps-storage-consumer-streamliner:1.69.345-dev
+image: harbor.pps.io/priority/pps-storage-consumer-streamliner:1.90.430
 replicas: 1
 nsxTag: paq.app.vtxVDF
 resources:
   requests:
-    cpu: 50m
-    memory: 64Mi
+    cpu: 75m
+    memory: 128Mi
   limits:
-    cpu: 1000m
-    memory: 4Gi
+    cpu: 350m
+    memory: 300Mi
 secrets:
   - name: memsql-password
   - name: elasticsearch-business-credentials
     exposeAs: elasticsearch-credentials
   - name: eos-tenant-api-token
     exposeAs: tenant-api-token
+  - name: cassandra-consistency-user
+    exposeAs: cassandra-credentials
+sla: 100
+maintainer: Development
+

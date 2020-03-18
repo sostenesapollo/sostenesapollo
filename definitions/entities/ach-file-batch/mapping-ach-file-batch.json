@@ -1,0 +1,31 @@
+{
+  "dynamic": false,
+  "properties": {
+    "id": {
+      "type": "keyword",
+      "normalizer": "lower_keyword"
+    },
+    "files": {
+      "type": "nested",
+      "properties": {
+        "fileId": {
+          "type": "keyword",
+          "normalizer": "lower_keyword"
+        },
+        "merchantId": {
+          "type": "keyword",
+          "normalizer": "lower_keyword"
+        },
+        "transactions": {
+          "type": "nested",
+          "properties": {
+            "id": {
+              "type": "keyword",
+              "normalizer": "lower_keyword"
+            }
+          }
+        }
+      }
+    }
+  }
+}

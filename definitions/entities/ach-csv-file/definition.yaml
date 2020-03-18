@@ -1,0 +1,6 @@
+meta:
+  key: ACH_CSV_File
+persistence:
+  hdfs:
+    location: /eos/payment/ach-csv
+name: ACH CSV File
