@@ -1,8 +1,8 @@
 meta:
-  key: CC_Payment
+  key: Card_Payment
 persistence:
   table:
-    name: CC_PAYMENT
+    name: CARD_PAYMENT
     database: payment
     schema:
       $ref: schema.yaml
@@ -11,7 +11,7 @@ persistence:
         $ref: view.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
-    name: cc.payment
+    name: card.payment
 pipelines:
   streamliner: []
-name: Credit Card Payment
+name: Card Payment
