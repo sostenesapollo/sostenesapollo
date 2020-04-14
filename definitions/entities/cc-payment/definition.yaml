@@ -1,0 +1,17 @@
+meta:
+  key: CC_Payment
+persistence:
+  table:
+    name: CC_PAYMENT
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: cc.payment
+pipelines:
+  streamliner: []
+name: Credit Card Payment
