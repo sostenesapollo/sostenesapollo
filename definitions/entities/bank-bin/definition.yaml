@@ -1,0 +1,17 @@
+meta:
+  key: Bank_Bin
+persistence:
+  table:
+    name: BANK_BIN
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: bank.bin
+pipelines:
+  streamliner: []
+name: Bank Information by BIN
