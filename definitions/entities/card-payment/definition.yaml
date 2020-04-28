@@ -1,0 +1,17 @@
+meta:
+  key: Card_Payment
+persistence:
+  table:
+    name: CARD_PAYMENT
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: card.payment
+pipelines:
+  streamliner: []
+name: Card Payment
