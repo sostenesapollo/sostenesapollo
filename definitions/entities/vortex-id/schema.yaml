@@ -1,0 +1,14 @@
+storeType: row
+columns:
+  id:
+    type: varchar
+    length: 255
+    allowNull: !!bool 'false'
+  _source:
+    type: json
+    allowNull: !!bool 'false'
+  active:
+    type: bool
+    path: JSON_EXTRACT_DOUBLE(`_source`, 'meta', 'status')
+keys:
+  primary: id
