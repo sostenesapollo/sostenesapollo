@@ -9,6 +9,6 @@ columns:
     allowNull: !!bool 'false'
   active:
     type: bool
-    path: JSON_EXTRACT_DOUBLE(`_source`, 'meta', 'status')
+    path: JSON_EXTRACT_DOUBLE(`_source`, 'active')
 keys:
   primary: id
