@@ -1,5 +1,8 @@
 meta:
   key: Card_Payment
+encryptedPaths:
+  - account.number
+  - invoice.customerTaxId
 persistence:
   table:
     name: CARD_PAYMENT
