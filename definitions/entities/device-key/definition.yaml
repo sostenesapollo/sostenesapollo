@@ -1,0 +1,14 @@
+meta:
+  key: Device_Key
+encryptedPaths:
+  - baseDerivationKey
+persistence:
+  table:
+    name: DEVICE_KEY
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view.yaml
+name: Device Key
