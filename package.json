@@ -18,26 +18,32 @@
     "lint:teamcity": "eslint --format 'html' --output-file 'report/lint/report.html' index.js || true"
   },
   "dependencies": {
-    "@pps/orchestration": "^1.2.2",
+    "@pps/orchestration": "^2.0.0",
     "@pps/secrets": "^1.1.0",
-    "@pps/svc-discovery": "^2.0.0",
-    "@pps/tenant-api-client": "^1.1.1",
-    "@pps/vortex-common": "^7.0.0",
-    "config": "^3.0.0",
-    "fs-extra": "^7.0.0",
-    "js-yaml": "^3.13.0",
-    "lodash": "^4.17.11"
+    "@pps/svc-discovery": "^2.2.0",
+    "@pps/tenant-api-client": "^1.4.1",
+    "@pps/vortex-common": "^7.1.1",
+    "config": "^3.3.1",
+    "fs-extra": "^9.0.1",
+    "js-yaml": "^3.14.0",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@pps/eslint-config-pps": "^1.4.0",
-    "@types/node": "^11.11.5",
+    "@pps/eslint-config-pps": "^1.5.0",
+    "@types/node": "^14.0.14",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "eslint": "^5.15.3",
-    "mocha": "^6.0.2",
-    "mocha-teamcity-reporter": "^2.5.2",
-    "nyc": "^13.3.0",
-    "sinon": "^7.3.0",
-    "sinon-chai": "^3.3.0"
+    "eslint": "^7.3.1",
+    "eslint-plugin-mocha": "^7.0.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "mocha": "^8.0.1",
+    "mocha-teamcity-reporter": "^3.0.0",
+    "nyc": "^15.1.0",
+    "sinon": "^9.0.2",
+    "sinon-chai": "^3.5.0"
+  },
+  "engines": {
+    "node": ">=11.15"
   }
 }

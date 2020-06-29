@@ -1,0 +1,1 @@
+extends: '@pps/eslint-config-pps/recommended-node'

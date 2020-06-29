@@ -1,0 +1,9 @@
+.idea
+.vscode
+.nyc_output
+coverage
+report
+node_modules
+test
+
+config/LOCAL_DEV*
