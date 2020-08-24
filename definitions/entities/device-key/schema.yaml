@@ -1,0 +1,24 @@
+storeType: row
+columns:
+  id:
+    type: varchar
+    length: 255
+    allowNull: !!bool 'false'
+  _source:
+    type: json
+    allowNull: !!bool 'false'
+  keySetId:
+    type: long
+    path: JSON_EXTRACT_DOUBLE(`_source`, 'keySetId')
+  keySetBitmask:
+    type: long
+    path: JSON_EXTRACT_DOUBLE(`_source`, 'keySetBitmask')
+  expiration:
+    type: datetime
+    path: JSON_EXTRACT_STRING(`_source`, 'expiration')
+  algorithm:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'algorithm')
+keys:
+  primary: id
