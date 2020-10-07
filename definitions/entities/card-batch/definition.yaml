@@ -1,0 +1,17 @@
+meta:
+  key: Card_Batch
+persistence:
+  table:
+    name: CARD_BATCH
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view-default.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: card.batch
+pipelines:
+  streamliner: [ ]
+name: Card Batch
