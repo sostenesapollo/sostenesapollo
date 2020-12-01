@@ -11,7 +11,9 @@ persistence:
       $ref: schema.yaml
     view:
       default:
-        $ref: view.yaml
+        $ref: view-default.yaml
+      settlement:
+        $ref: view-settlement.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
     name: card.payment
