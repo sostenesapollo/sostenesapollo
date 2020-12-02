@@ -1,2 +1,3 @@
 id: ~
 _source: ~
+batchId: JSON_EXTRACT_STRING(`_source`, 'batchId')
