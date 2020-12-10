@@ -1,11 +1,8 @@
 meta:
-  key: Card_Payment
-encryptedPaths:
-  - account.number
-  - invoice.customerTaxId
+  key: Card_Batch
 persistence:
   table:
-    name: CARD_PAYMENT
+    name: CARD_BATCH
     database: payment
     schema:
       $ref: schema.yaml
@@ -14,7 +11,7 @@ persistence:
         $ref: view-default.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
-    name: card.payment
+    name: card.batch
 pipelines:
-  streamliner: []
-name: Card Payment
+  streamliner: [ ]
+name: Card Batch
