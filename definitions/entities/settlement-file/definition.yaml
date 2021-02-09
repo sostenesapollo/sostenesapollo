@@ -1,0 +1,6 @@
+meta:
+  key: Settlement_File
+persistence:
+  hdfs:
+    location: /eos/payment/settlement
+name: Settlement File
