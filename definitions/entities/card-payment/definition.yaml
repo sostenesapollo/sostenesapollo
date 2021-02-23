@@ -3,6 +3,7 @@ meta:
 encryptedPaths:
   - account.number
   - invoice.customerTaxId
+  - merchant.taxId
 persistence:
   table:
     name: CARD_PAYMENT
