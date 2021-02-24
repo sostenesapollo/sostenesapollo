@@ -3,6 +3,7 @@ meta:
 encryptedPaths:
   - account.number
   - invoice.customerTaxId
+  - merchant.taxId
 persistence:
   table:
     name: CARD_PAYMENT
@@ -12,9 +13,11 @@ persistence:
     view:
       default:
         $ref: view-default.yaml
+      settlement:
+        $ref: view-settlement.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
     name: card.payment
 pipelines:
-  streamliner: []
+  streamliner: [ ]
 name: Card Payment
