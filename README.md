@@ -1,6 +1,6 @@
 ### Hi there, I'm Apollo
-![Website](https://img.shields.io/badge/SOSTENESAPOLLO.GITHUB.IO-UP-color)
-![Twitter Follow](https://img.shields.io/twitter/follow/sostenesapollo?label=follow&style=social)
+[![Website](https://img.shields.io/badge/SOSTENESAPOLLO.GITHUB.IO-UP-color)](https://sostenesapollo.github.io/)
+[![Twitter Follow](https://img.shields.io/twitter/follow/sostenesapollo?label=follow&style=social)](https://twitter.com/sostenesapollo)
 - 🔭 I’m currently working as frontend developer using [vuejs](https://vuejs.org) .
 - ⚛️ I’m currently learning [React](https://reactjs.org/), [Socket.io](https://socket.io/), [Firebase](https://firebase.google.com/) and realtime stuff.
 ### 📫 How to reach me:
