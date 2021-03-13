@@ -1,5 +1,5 @@
 ### Hi there, I'm Apollo
-![Website(https://img.shields.io/badge/SOSTENESAPOLLO.GITHUB.IO-UP-color)
+![Website](https://img.shields.io/badge/SOSTENESAPOLLO.GITHUB.IO-UP-color)
 ![Twitter Follow](https://img.shields.io/twitter/follow/sostenesapollo?label=follow&style=social)
 - 🔭 I’m currently working as frontend developer using [vuejs](https://vuejs.org) .
 - ⚛️ I’m currently learning [React](https://reactjs.org/), [Socket.io](https://socket.io/), [Firebase](https://firebase.google.com/) and realtime stuff.
@@ -21,6 +21,7 @@
 <img align="left" alt="VueJs" width="26px" src="https://br.vuejs.org//images/logo.png" width="26px">
 <img align="left" alt="React" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png" />
 
+<img align="left" alt="Jquery" width="26px" src="https://cdn.iconscout.com/icon/free/png-512/jquery-10-1175155.png" />
 <img align="left" alt="GraphQL" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/graphql/graphql.png" />
 <img align="left" alt="VueJs" width="26px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Sqlite-square-icon.svg/1200px-Sqlite-square-icon.svg.png" width="26px">
 <img align="left" alt="Node.js" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png" />
