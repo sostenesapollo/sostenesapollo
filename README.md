@@ -2,7 +2,7 @@
 [![Website](https://img.shields.io/badge/SOSTENESAPOLLO.GITHUB.IO-UP-color)](https://sostenesapollo.github.io/)
 [![Twitter Follow](https://img.shields.io/twitter/follow/sostenesapollo?label=follow&style=social)](https://twitter.com/sostenesapollo)
 - 🔭 I’m currently working as full stack JavaScript developer, and using [vuejs](https://vuejs.org) .
-- ⚛️ I’m currently learning [React](https://reactjs.org/), [Socket.io](https://socket.io/), [Firebase](https://firebase.google.com/) and realtime stuff.
+- <img src="https://media2.giphy.com/media/eNAsjO55tPbgaor7ma/source.gif" width="20" height="20">  I’m currently learning [React](https://reactjs.org/), [Socket.io](https://socket.io/), [Firebase](https://firebase.google.com/) and realtime stuff.
 ### 📫 How to reach me:
 - 🤓 [Personal Site](https://sostenesapollo.github.io/)
 - 📸 [Instagram](https://www.instagram.com/sostenes_apollo/)
