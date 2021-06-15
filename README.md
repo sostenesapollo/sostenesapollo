@@ -1,7 +1,7 @@
 ### <img src="https://i.ibb.co/sPrPJxR/hello.gif" alt="hello" border="0" width="20"> Hi there, I'm Apollo 
 [![Website](https://img.shields.io/badge/SOSTENESAPOLLO.GITHUB.IO-UP-color)](https://sostenesapollo.github.io/)
 [![Twitter Follow](https://img.shields.io/twitter/follow/sostenesapollo?label=follow&style=social)](https://twitter.com/sostenesapollo)
-- 🔭 I’m currently working as full stack JavaScript developer, and using [vuejs](https://vuejs.org) .
+- <img src="https://images.emojiterra.com/google/android-11/512px/1f4bb.png" width="20" height="20" style="margin-top:10px">  I’m currently working as full stack JavaScript developer, and using [vuejs](https://vuejs.org) .
 - <img src="https://media2.giphy.com/media/eNAsjO55tPbgaor7ma/source.gif" width="20" height="20">  I’m currently learning [React](https://reactjs.org/), [Socket.io](https://socket.io/), [Firebase](https://firebase.google.com/) and realtime stuff.
 ### 📫 How to reach me:
 - 🤓 [Personal Site](https://sostenesapollo.github.io/)
