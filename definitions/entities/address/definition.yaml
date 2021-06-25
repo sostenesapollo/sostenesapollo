@@ -14,4 +14,4 @@ persistence:
     name: address
 pipelines:
   streamliner: []
-name: Valid Addresses by Address
+name: Address Validation by Address
