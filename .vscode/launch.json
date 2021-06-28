@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Local Dev AUS",
+            "runtimeExecutable": "${workspaceFolder}/.vscode/bunyan.sh",
+            "program": "${workspaceFolder}/index.js",
+            "outputCapture": "std",
+            "env": {
+                "NODE_ENV": "LOCAL_DEV_AUS",
+                "EOS_PHYSICAL_ENV": "nonprod-aus",
+                "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+            },
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": [
+                "<node_internals>/**/*.js",
+                "node_modules"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Local Dev ATL",
+            "runtimeExecutable": "${workspaceFolder}/.vscode/bunyan.sh",
+            "program": "${workspaceFolder}/index.js",
+            "outputCapture": "std",
+            "env": {
+                "NODE_ENV": "LOCAL_DEV_ATL",
+                "EOS_PHYSICAL_ENV": "nonprod-atl",
+                "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+            },
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": [
+                "<node_internals>/**/*.js",
+                "node_modules"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Local Dev RND",
+            "runtimeExecutable": "${workspaceFolder}/.vscode/bunyan.sh",
+            "program": "${workspaceFolder}/index.js",
+            "outputCapture": "std",
+            "env": {
+                "NODE_ENV": "LOCAL_DEV_RND",
+                "EOS_PHYSICAL_ENV": "rnd-atl",
+                "EOS_VIRTUAL_ENV": "rnd-atl",
+                "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+            },
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": [
+                "<node_internals>/**/*.js",
+                "node_modules"
+            ]
+        }
+    ]
+}

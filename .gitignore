@@ -1,5 +1,5 @@
 config.old
-config/LOCAL_DEV.yaml
+config/LOCAL_DEV*
 
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
