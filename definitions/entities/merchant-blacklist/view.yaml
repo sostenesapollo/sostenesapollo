@@ -1,4 +1,5 @@
 id: ~
 _source: ~
-merchantNumber: JSON_EXTRACT_STRING('_source', 'merchantNumber')
-locationId: JSON_EXTRACT_STRING('_source', 'locationId')
+# Submerchant fields: https://git.pps.io/PPS/eos-payment-api-broker/blob/develop/lib/models/card.js#L105
+merchantId: JSON_EXTRACT_STRING('_source', 'merchantId')
+facilitatorId: JSON_EXTRACT_STRING('_source', 'facilitatorId')
