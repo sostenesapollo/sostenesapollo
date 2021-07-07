@@ -1,0 +1,18 @@
+storeType: row
+columns:
+  id:
+    type: varchar
+    length: 255
+    allowNull: !!bool 'false'
+  merchantNumber:
+    type: int
+    allowNull: !!bool 'false'
+  locationId:
+    type: varchar
+    length: 255
+    allowNull: !!bool 'false'
+keys:
+  clustered: id
+  timestamp:
+    columns: ['merchantNumber', 'locationId']
+    type: hash
