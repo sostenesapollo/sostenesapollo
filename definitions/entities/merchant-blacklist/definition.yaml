@@ -1,0 +1,17 @@
+meta:
+  key: Merchant_Blacklist
+persistence:
+  table:
+    name: MERCHANT_BLACKLIST
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: merchant.blacklist
+pipelines:
+  streamliner: []
+name: Merchant Blacklist
