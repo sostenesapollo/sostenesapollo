@@ -1,0 +1,17 @@
+meta:
+  key: Address
+persistence:
+  table:
+    name: ADDRESS
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: address
+pipelines:
+  streamliner: []
+name: Address Validation by Address

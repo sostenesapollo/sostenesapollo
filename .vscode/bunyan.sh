@@ -1,0 +1,1 @@
+node $* | bunyan -o short --color
