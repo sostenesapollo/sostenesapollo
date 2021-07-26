@@ -6,6 +6,7 @@
         "nsxtag",
         "oxor",
         "pbpaste",
-        "ureplicator"
+        "ureplicator",
+        "varchar"
     ]
 }

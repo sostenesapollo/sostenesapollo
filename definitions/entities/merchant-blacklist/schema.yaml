@@ -1,0 +1,12 @@
+storeType: row
+columns:
+  id:
+    type: varchar
+    length: 255
+    allowNull: !!bool 'false'
+  _source:
+    type: json
+    allowNull: !!bool 'false'
+
+keys:
+  primary: id
