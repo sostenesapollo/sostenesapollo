@@ -1,0 +1,12 @@
+meta:
+  key: Settlement_Cutoff
+persistence:
+  table:
+    name: SETTLEMENT_CUTOFF
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view-default.yaml
+name: Settlement Cutoffs
