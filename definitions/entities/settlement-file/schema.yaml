@@ -1,0 +1,19 @@
+storeType: row
+columns:
+  id:
+    type: varchar
+    length: 255
+    allowNull: !!bool 'false'
+  _source:
+    type: json
+    allowNull: !!bool 'false'
+  processor:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'processor')
+  timestamp:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'timestamp')
+keys:
+  primary: id
