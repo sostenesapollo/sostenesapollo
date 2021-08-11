@@ -1,6 +1,19 @@
 meta:
   key: Settlement_File
 persistence:
+  table:
+    name: SETTLEMENT_FILE
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view-default.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: settlement.file
   hdfs:
     location: /eos/payment/settlement
+pipelines:
+  streamliner: [ ]
 name: Settlement File
