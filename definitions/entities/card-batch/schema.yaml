@@ -11,9 +11,5 @@ columns:
     type: varchar
     length: 255
     path: JSON_EXTRACT_STRING(`_source`, 'status')
-  cutoff:
-    type: varchar
-    length: 255
-    path: JSON_EXTRACT_STRING(`_source`, 'cutoff')
 keys:
   primary: id
