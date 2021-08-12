@@ -1,5 +1,9 @@
 meta:
   key: Disbursement
+encryptedPaths:
+  - account.number
+  - merchant.taxId
+  - customer.taxId
 persistence:
   table:
     name: DISBURSEMENT
@@ -9,6 +13,8 @@ persistence:
     view:
       default:
         $ref: view-default.yaml
+      disbursement:
+        $ref: view-disbursement.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
     name: disbursement
