@@ -1,3 +1,5 @@
 id: ~
 _source: ~
-
+error: JSON_EXTRACT_STRING(`_source`, 'error')
+request: JSON_EXTRACT_STRING(`_source`, 'request')
+reject: JSON_EXTRACT_STRING(`_source`, 'reject')

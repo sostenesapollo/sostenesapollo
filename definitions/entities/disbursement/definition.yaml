@@ -1,9 +1,5 @@
 meta:
   key: Disbursement
-encryptedPaths:
-  - account.number
-  - merchant.taxId
-  - customer.taxId
 persistence:
   table:
     name: DISBURSEMENT
