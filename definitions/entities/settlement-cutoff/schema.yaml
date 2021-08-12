@@ -7,9 +7,9 @@ columns:
   _source:
     type: json
     allowNull: !!bool 'false'
-  status:
+  processor:
     type: varchar
     length: 255
-    path: JSON_EXTRACT_STRING(`_source`, 'status')
+    path: JSON_EXTRACT_STRING(`_source`, 'processor')
 keys:
   primary: id

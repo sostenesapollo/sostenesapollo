@@ -1,5 +1,5 @@
 id: ~
 _source: ~
 status: ~
-cutoff: ~
+cutoff: JSON_EXTRACT_STRING(`_source`, 'cutoff')
 virtualEnv: JSON_EXTRACT_STRING(`_source`, 'virtualEnv')
