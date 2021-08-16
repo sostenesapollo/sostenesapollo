@@ -2,4 +2,3 @@ id: ~
 _source: ~
 status: JSON_EXTRACT_STRING(`_source`, 'status')
 disburseRequest: JSON_EXTRACT_STRING(`_source`, 'disburseRequest')
-disburseReject: JSON_EXTRACT_STRING(`_source`, 'disburseReject')
