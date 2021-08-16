@@ -17,6 +17,8 @@ persistence:
         $ref: view-settlement.yaml
       recruitment:
         $ref: view-recruitment.yaml
+      disbursement:
+        $ref: view-disbursement.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
     name: card.payment

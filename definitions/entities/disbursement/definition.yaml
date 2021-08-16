@@ -9,6 +9,8 @@ persistence:
     view:
       default:
         $ref: view-default.yaml
+      disbursement:
+        $ref: view-disbursement.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
     name: disbursement
