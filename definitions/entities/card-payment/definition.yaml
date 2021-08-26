@@ -20,8 +20,10 @@ persistence:
       disbursement:
         $ref: view-disbursement.yaml
   topic:
-    $ref: ../../common/kafka-topic.yaml
     name: card.payment
+    partitions: 5
+    replicationFactor: 3
 pipelines:
-  streamliner: [ ]
+  streamliner:
+    replicas: 5
 name: Card Payment
