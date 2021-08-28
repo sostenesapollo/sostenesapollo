@@ -2,7 +2,6 @@
 [![Website](https://img.shields.io/badge/SOSTENESAPOLLO.GITHUB.IO-UP-color)](https://sostenesapollo.github.io/)
 [![Twitter Follow](https://img.shields.io/twitter/follow/sostenesapollo?label=follow&style=social)](https://twitter.com/sostenesapollo)
 - <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" width="20" height="20" style="margin-top:10px">  I’m currently working as full stack [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) developer, and using [Vuejs](https://vuejs.org) and [React](https://reactjs.org/) .
-- <img src="https://blog.golang.org/go-brand/Go-Logo/PNG/Go-Logo_Aqua.png" width="20" height="20" style="margin-top:10px">  I'm learning [Golang](https://golang.org/).
 ### 📫 How to reach me:
 - 🤓 [Personal Site](https://sostenesapollo.github.io/)
 - 📸 [Instagram](https://www.instagram.com/sostenes_apollo/)
