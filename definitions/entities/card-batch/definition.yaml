@@ -11,6 +11,8 @@ persistence:
         $ref: view-default.yaml
       settlement:
         $ref: view-settlement.yaml
+      sequence:
+        $ref: view-sequence.yaml
   topic:
     $ref: ../../common/kafka-topic.yaml
     name: card.batch
