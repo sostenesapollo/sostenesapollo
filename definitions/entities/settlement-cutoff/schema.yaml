@@ -7,6 +7,10 @@ columns:
   _source:
     type: json
     allowNull: !!bool 'false'
+  system:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'system')
   processor:
     type: varchar
     length: 255
