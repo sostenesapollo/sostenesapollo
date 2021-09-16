@@ -1,0 +1,5 @@
+id: ~
+status: ~
+merchantNumber: JSON_EXTRACT_STRING(`_source`, 'merchant', 'number')
+batchNumber: JSON_EXTRACT_STRING(`_source`, 'number')
+settlementTimestamp: JSON_EXTRACT_STRING(`_source`, 'settlement', 'timestamp')
