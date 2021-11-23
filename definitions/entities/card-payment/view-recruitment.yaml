@@ -3,3 +3,6 @@ _source: ~
 batchId: JSON_EXTRACT_STRING(`_source`, 'batchId')
 processor: JSON_EXTRACT_STRING(`_source`, 'merchant', 'processor', 'name')
 bankNumber: JSON_EXTRACT_STRING(`_source`, 'merchant', 'processor', 'bankNumber')
+tenantId: JSON_EXTRACT_STRING(`_source`, 'tenantId')
+replicationGroup: JSON_EXTRACT_STRING(`_source`, 'replicationGroup')
+merchantNumber: JSON_EXTRACT_STRING(`_source`, 'merchant', 'number')
