@@ -9,4 +9,9 @@ persistence:
     view:
       default:
         $ref: view-default.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: settlement.cutoff
+pipelines:
+  streamliner: []
 name: Settlement Cutoffs
