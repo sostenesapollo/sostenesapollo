@@ -19,6 +19,8 @@ persistence:
         $ref: view-recruitment.yaml
       disbursement:
         $ref: view-disbursement.yaml
+      netamount:
+        $ref: view-netamount.yaml
   topic:
     name: card.payment
     partitions: 5
