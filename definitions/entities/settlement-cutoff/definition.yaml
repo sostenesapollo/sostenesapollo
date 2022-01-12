@@ -9,4 +9,6 @@ persistence:
     view:
       default:
         $ref: view-default.yaml
+      cutoff:
+        $ref: view-cutoff.yaml
 name: Settlement Cutoffs
