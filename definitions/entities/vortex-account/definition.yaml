@@ -1,0 +1,17 @@
+meta:
+  key: Vortex_Account
+persistence:
+  table:
+    name: VORTEX_ACCOUNT
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: vortex.account
+pipelines:
+  streamliner: []
+name: Vortex Account
