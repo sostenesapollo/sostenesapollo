@@ -1,0 +1,17 @@
+meta:
+  key: Vortex_Merchant
+persistence:
+  table:
+    name: VORTEX_MERCHANT
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: vortex.merchant
+pipelines:
+  streamliner: []
+name: Vortex Merchant
