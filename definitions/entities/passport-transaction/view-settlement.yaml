@@ -1,0 +1,3 @@
+id: ~
+_source: ~
+transactionType: JSON_EXTRACT_STRING(`_source`, 'transactionType')
