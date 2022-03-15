@@ -14,8 +14,6 @@ persistence:
   topic:
     $ref: ../../common/kafka-topic.yaml
     name: passport.dispute
-  hdfs:
-    location: /eos/payment/passport
 pipelines:
   streamliner: []
 name: Passport Dispute
