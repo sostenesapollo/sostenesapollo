@@ -1,0 +1,21 @@
+meta:
+  key: Passport_Transaction
+persistence:
+  table:
+    name: PASSPORT_TRANSACTION
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view-default.yaml
+      settlement:
+        $ref: view-settlement.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: passport.transaction
+  hdfs:
+    location: /eos/payment/passport
+pipelines:
+  streamliner: []
+name: Passport Transaction
