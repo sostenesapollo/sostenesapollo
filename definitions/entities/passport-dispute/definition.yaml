@@ -1,0 +1,19 @@
+meta:
+  key: Passport_Dispute
+persistence:
+  table:
+    name: PASSPORT_DISPUTE
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view-default.yaml
+      settlement:
+        $ref: view-settlement.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: passport.dispute
+pipelines:
+  streamliner: []
+name: Passport Dispute
