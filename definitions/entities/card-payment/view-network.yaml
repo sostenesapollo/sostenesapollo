@@ -1,0 +1,4 @@
+id: ~
+_source: ~
+batchId: JSON_EXTRACT_STRING(`_source`, 'batchId')
+network: JSON_EXTRACT_STRING(`_source`, 'account', 'network')
