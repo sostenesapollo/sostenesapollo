@@ -21,6 +21,8 @@ persistence:
         $ref: view-disbursement.yaml
       netamount:
         $ref: view-netamount.yaml
+      network:
+        $ref: view-network.yaml
   topic:
     name: card.payment
     partitions: 5
