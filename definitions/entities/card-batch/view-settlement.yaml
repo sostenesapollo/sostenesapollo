@@ -3,3 +3,4 @@ _source: ~
 status: ~
 processor: JSON_EXTRACT_STRING(`_source`, 'merchant', 'processor', 'name')
 bankNumber: JSON_EXTRACT_STRING(`_source`, 'merchant', 'processor', 'bankNumber')
+singleMessage: coalesce(JSON_EXTRACT_STRING(`_source`, 'singleMessage'), 'false')
