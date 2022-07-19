@@ -11,5 +11,9 @@ columns:
     type: varchar
     length: 255
     path: JSON_EXTRACT_STRING(`_source`, 'status')
+  singleMessage:
+    type: varchar
+    length: 6
+    path: coalesce(JSON_EXTRACT_STRING(`_source`, 'singleMessage'), 'false')
 keys:
   primary: id
