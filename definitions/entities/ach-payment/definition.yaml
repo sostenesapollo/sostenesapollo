@@ -17,8 +17,10 @@ persistence:
       withfilename:
         $ref: viewWithFileName.yaml
   topic:
-    $ref: ../../common/kafka-topic.yaml
     name: ach.payment
+    partitions: 3
+    replicationFactor: 3
 pipelines:
-  streamliner: []
+  streamliner:
+    replicas: 3
 name: ACH Payment
