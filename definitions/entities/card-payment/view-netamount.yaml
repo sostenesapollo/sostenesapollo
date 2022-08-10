@@ -1,7 +1,7 @@
 id: ~
 _source: ~
-batchId: JSON_EXTRACT_STRING(`_source`, 'batchId')
-approved: JSON_EXTRACT_STRING(`_source`, 'response', 'approved')
-status: JSON_EXTRACT_STRING(`_source`, 'status')
-transactionType: JSON_EXTRACT_STRING(`_source`, 'transactionType')
-totalAmount: JSON_EXTRACT_DOUBLE(`_source`, 'totalAmount')
+batchId: ~
+approved: ~
+status: ~
+transactionType: ~
+totalAmount: ~
