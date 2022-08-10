@@ -1,5 +1,5 @@
 id: ~
 _source: ~
 status: ~
-autoCloseTime: JSON_EXTRACT_STRING(`_source`, 'autoCloseTime')
-virtualEnv: JSON_EXTRACT_STRING(`_source`, 'virtualEnv')
+autoCloseTime: ~
+virtualEnv: ~

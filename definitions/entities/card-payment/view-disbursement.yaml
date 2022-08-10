@@ -1,4 +1,4 @@
 id: ~
 _source: ~
-status: JSON_EXTRACT_STRING(`_source`, 'status')
-disburseRequest: JSON_EXTRACT_STRING(`_source`, 'disburseRequest')
+status: ~
+disburseRequest: ~
