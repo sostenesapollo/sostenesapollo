@@ -7,5 +7,37 @@ columns:
   _source:
     type: json
     allowNull: !!bool 'false'
+  status:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'status')
+  filename:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'fileName')
+  batchId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'batchId')
+  companyName:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'company','name')
+  companyIdentification:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'company','identification')
+  createdEst:
+    type: varchar
+    length: 255
+    path: CONVERT_TZ(JSON_EXTRACT_STRING (`_source`,'created'), 'GMT', 'America/New_York')
+  modifiedEST:
+    type: varchar
+    length: 255
+    path: CONVERT_TZ(JSON_EXTRACT_STRING (`_source`,'modified'), 'GMT', 'America/New_York')
+  externalId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING (`_source`,'externalId')
 keys:
   primary: id
