@@ -39,5 +39,13 @@ columns:
     type: varchar
     length: 255
     path: JSON_EXTRACT_STRING (`_source`,'externalId')
+  virtualEnv:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING (`_source`,'virtualEnv')
+  tenantId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING (`_source`,'tenantId')
 keys:
   primary: id
