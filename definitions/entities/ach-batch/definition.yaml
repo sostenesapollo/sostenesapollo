@@ -14,4 +14,4 @@ persistence:
     name: ach.batch
 pipelines:
   streamliner: [ ]
-name: Ach Batch
+name: ACH Batch
