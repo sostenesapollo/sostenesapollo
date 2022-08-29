@@ -1,5 +1,5 @@
 meta:
-  key: Ach_Batch
+  key: ACH_Batch
 persistence:
   table:
     name: ACH_BATCH
