@@ -22,4 +22,4 @@ keys:
   clustered: id
   timestamp:
     columns: ['timestamp']
-    type: hash
+    type: HASH
