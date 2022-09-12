@@ -35,9 +35,5 @@ columns:
     type: varchar
     length: 255
     path: CONVERT_TZ(JSON_EXTRACT_STRING (`_source`,'modified'), 'GMT', 'America/New_York')
-  externalId:
-    type: varchar
-    length: 255
-    path: JSON_EXTRACT_STRING (`_source`,'externalId')
 keys:
   primary: id
