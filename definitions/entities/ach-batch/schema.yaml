@@ -11,10 +11,10 @@ columns:
     type: varchar
     length: 255
     path: JSON_EXTRACT_STRING(`_source`, 'status')
-  fileName:
+  filename:
     type: varchar
     length: 255
-    path: JSON_EXTRACT_STRING(`_source`, 'fileName')
+    path: JSON_EXTRACT_STRING(`_source`, 'filename')
   error:
     type: varchar
     length: 255
