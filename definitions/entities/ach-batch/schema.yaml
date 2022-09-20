@@ -14,11 +14,11 @@ columns:
   filename:
     type: varchar
     length: 255
-    path: JSON_EXTRACT_STRING(`_source`, 'fileName')
-  batchId:
+    path: JSON_EXTRACT_STRING(`_source`, 'filename')
+  error:
     type: varchar
     length: 255
-    path: JSON_EXTRACT_STRING(`_source`, 'batchId')
+    path: JSON_EXTRACT_STRING(`_source`, 'error')
   companyName:
     type: varchar
     length: 255
@@ -35,21 +35,5 @@ columns:
     type: varchar
     length: 255
     path: CONVERT_TZ(JSON_EXTRACT_STRING (`_source`,'modified'), 'GMT', 'America/New_York')
-  externalId:
-    type: varchar
-    length: 255
-    path: JSON_EXTRACT_STRING (`_source`,'externalId')
-  virtualEnv:
-    type: varchar
-    length: 255
-    path: JSON_EXTRACT_STRING (`_source`,'virtualEnv')
-  tenantId:
-    type: varchar
-    length: 255
-    path: JSON_EXTRACT_STRING (`_source`,'tenantId')
-  replicationGroup:
-    type: varchar
-    length: 255
-    path: JSON_EXTRACT_STRING (`_source`,'replicationGroup')
 keys:
   primary: id
