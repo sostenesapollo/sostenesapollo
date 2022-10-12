@@ -1,0 +1,3 @@
+id: ~
+_source: ~
+processed: JSON_EXTRACT_JSON(`_source`, 'status')

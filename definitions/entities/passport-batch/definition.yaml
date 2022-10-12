@@ -1,0 +1,17 @@
+meta:
+  key: Passport_Batch
+persistence:
+  table:
+    name: PASSPORT_BATCH
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view-default.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: passport.batch
+pipelines:
+  streamliner: [ ]
+name: Passport Batch
