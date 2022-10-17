@@ -1,0 +1,17 @@
+meta:
+  key: Funding_Transaction
+persistence:
+  table:
+    name: FUNDING_TRANSACTION
+    database: funding
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view-default.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: funding.transaction
+pipelines:
+  streamliner: [ ]
+name: Funding Transaction
