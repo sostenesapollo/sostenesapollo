@@ -3,7 +3,7 @@ meta:
 persistence:
   table:
     name: FUNDING_TRANSACTION
-    database: memsql-funding
+    database: funding
     schema:
       $ref: schema.yaml
     view:

@@ -1,5 +1,5 @@
 meta:
-  key: memsql-funding
+  key: funding
 
 type: database
 name: funding
