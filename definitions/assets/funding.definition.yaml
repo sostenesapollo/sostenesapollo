@@ -1,6 +1,0 @@
-meta:
-  key: funding
-
-type: database
-name: funding
-store: memsql
