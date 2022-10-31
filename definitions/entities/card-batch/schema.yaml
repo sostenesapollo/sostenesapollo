@@ -11,5 +11,8 @@ columns:
     type: varchar
     length: 255
     path: JSON_EXTRACT_STRING(`_source`, 'status')
+  singleMessage:
+    type: bool
+    path: case when coalesce(JSON_EXTRACT_STRING(`_source`, 'singleMessage'), 'false') = 'true' then 1 else 0 end
 keys:
   primary: id

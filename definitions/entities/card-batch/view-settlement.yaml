@@ -1,5 +1,6 @@
 id: ~
 _source: ~
 status: ~
-processor: JSON_EXTRACT_STRING(`_source`, 'merchant', 'processor', 'name')
-bankNumber: JSON_EXTRACT_STRING(`_source`, 'merchant', 'processor', 'bankNumber')
+processor: ~
+bankNumber: ~
+singleMessage: ~
