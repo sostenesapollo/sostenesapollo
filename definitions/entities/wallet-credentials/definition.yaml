@@ -1,5 +1,7 @@
 meta:
   key: Wallet_Credential
+encryptedPaths:
+  - privateKey
 persistence:
   table:
     name: WALLET_CREDENTIAL
