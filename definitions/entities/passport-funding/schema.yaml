@@ -23,6 +23,10 @@ columns:
     type: varchar
     length: 255
     path: JSON_EXTRACT_STRING(`_source`, 'destinationId')
+  scheduleDate:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'scheduleDate')  
   createdEST:
     type: varchar
     length: 255
