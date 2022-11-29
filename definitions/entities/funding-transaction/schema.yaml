@@ -1,0 +1,47 @@
+storeType: row
+columns:
+  id:
+    type: varchar
+    length: 255
+    allowNull: !!bool 'false'
+  _source:
+    type: json
+    allowNull: !!bool 'false'
+  status:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'status')
+  merchantNumber:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'merchant', 'number')
+  achMethod:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'funding', 'achMethod')
+  batchId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'funding', 'batchId')
+  externalId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'funding', 'externalId')
+  effectiveDate:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING (`_source`, 'funding', 'effectiveDate')
+  processDate:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING (`_source`, 'funding', 'processDate')
+  groupId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING (`_source`, 'funding', 'groupId')
+  created:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING (`_source`, 'created')
+keys:
+  primary: id
