@@ -1,0 +1,21 @@
+meta:
+  key: Passport_Funding
+persistence:
+  table:
+    name: PASSPORT_FUNDING
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view-default.yaml
+      settlement:
+        $ref: view-settlement.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: passport.funding
+  hdfs:
+    location: /eos/payment/passport-funding
+pipelines:
+  streamliner: []
+name: Passport Funding
