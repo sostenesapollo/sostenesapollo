@@ -17,7 +17,8 @@ const experiences= [
     location: 'Santa Catarina, BR',
     description: `
     As a seasoned backend developer at Digitro, I played a key role in the development of a health platform that connected professionals and patients via node.js applications using TDD methodologies and NestJS. My extensive experience with Docker, Docker Compose, and various databases (such as Postgres and MySQL) allowed me to consistently deliver high-quality, scalable solutions that met the needs of both professionals and patients. In addition, I effectively utilized RabbitMQ and Kafka to integrate and manage various services, and contributed to the maintenance of tools such as GitHub, Jenkins, ECS, and ECR. My technical expertise and dedication to excellence enabled me to effectively develop and maintain a wide range of complex systems within this critical healthcare platform.
-    `
+    `,
+    referal: 'https://drive.google.com/file/d/1gevSgJksQavD3flyQAVyP5ejhDOmFgLs/view?usp=sharing'
   },
   {
     title:'Bank of Brazil',
@@ -104,7 +105,8 @@ const Experience = ({
     title="",
     year="",
     location="",
-    description=''
+    description='',
+    referal=""
   }
 }) => {
   return (
@@ -116,7 +118,9 @@ const Experience = ({
         <p id="work-date-location" class="leading-normal text-sm text-white-700 mt-1">
           {year} <strong></strong>
           <RightArrow className="pl-3"/>
-          {location && location}
+          {location && location} 
+          <RightArrow className="pl-3"/>
+          {referal&& <a className="text-blue-300" href={referal}>See letter of recommendation</a>}
         </p>
       </header>
       <ul id="work-description-bullets" class="">
