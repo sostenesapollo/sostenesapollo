@@ -71,7 +71,7 @@ const moreTools = [
   {name:"Heroku", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain.svg'},  
   {name:"kubernetes", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg'},
   {name:"Teraform", iconUrl: 'https://icons-for-free.com/download-icon-Terraform-1329545833434920628_512.png'},
-  {name:"AWS", iconUrl: 'https://cdn.icon-icons.com/icons2/2407/PNG/512/aws_icon_146074.png'},
+  {name:"AWS", iconUrl: 'https://static-00.iconduck.com/assets.00/aws-icon-512x512-hniukvcn.png'},
   {name:"Digital Ocean", iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/DigitalOcean_icon.svg/2048px-DigitalOcean_icon.svg.png'}
 ]
 
