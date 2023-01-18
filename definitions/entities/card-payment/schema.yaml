@@ -10,5 +10,129 @@ columns:
   singleMessage:
     type: bool
     path: case when coalesce(JSON_EXTRACT_STRING(`_source`, 'singleMessage'), 'false') = 'true' then 1 else 0 end
+  disburseRequest:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'disburseRequest')
+  batchId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'batchId')
+  batchId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'batchId')
+  approved:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'response', 'approved')
+  transactionType:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'transactionType')
+  totalAmount:
+    type: double
+    path: JSON_EXTRACT_DOUBLE(`_source`, 'totalAmount')
+  network:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'account', 'network')
+  processor:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'merchant', 'processor', 'name')
+  bankNumber:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'merchant', 'processor', 'bankNumber')
+  tenantId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'tenantId')
+  replicationGroup:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'replicationGroup')
+  merchantNumber:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'merchant', 'number')
+  createdEST:
+    type: varchar
+    length: 255
+    path: CONVERT_TZ(JSON_EXTRACT_STRING(`_source`, 'created'), 'GMT', 'America/New_York')
+  modifiedEST:
+    type: varchar
+    length: 255
+    path: CONVERT_TZ(JSON_EXTRACT_STRING(`_source`, 'modified'), 'GMT', 'America/New_York')
+  externalId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'externalId')
+  invoice:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'invoice')
+  # TODO: duplicated field merchantNumber
+  number:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'merchant', 'number')
+  originalAmount:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'originalAmount')
+  originalAmount:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'originalAmount')
+  requestedAmount:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'requestedAmount')
+  authorizationAuthorized:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'response', 'authorization', 'authorized')
+  responseAmount:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'response', 'amount')
+  responseDeclined:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'declined')
+  responseTransactionId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'response', 'transactionId')
+  settlementTimestampEST:
+    type: varchar
+    length: 255
+    path: CONVERT_TZ(JSON_EXTRACT_STRING(`_source`, 'settlement', 'timestamp'), 'GMT', 'America/New_York')
+  statusDescription:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'statusDescription')
+  submerchantFacilitatorId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'submerchant', 'facilitatorId')
+  submerchantMerchantId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'submerchant', 'merchantId')
+  tenantName:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'tenantName')
+  Status:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'status')  
+  created:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'created')
 keys:
   primary: id

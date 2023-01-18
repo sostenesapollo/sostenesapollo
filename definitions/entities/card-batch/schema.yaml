@@ -11,8 +11,48 @@ columns:
     type: varchar
     length: 255
     path: JSON_EXTRACT_STRING(`_source`, 'status')
+  cutoff:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'cutoff')
+  merchantnumber:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_DOUBLE(`_source`, 'merchant', 'number')
+  batchnumber:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_DOUBLE(`_source`, 'number')
+  timestamp:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_DOUBLE(`_source`, 'settlement', 'timestamp')
+  order:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_DOUBLE(`_source`,'settlement', 'order')
+  processor:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'merchant', 'processor', 'name')
+  bankNumber:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'merchant', 'processor', 'bankNumber')
   singleMessage:
     type: bool
     path: case when coalesce(JSON_EXTRACT_STRING(`_source`, 'singleMessage'), 'false') = 'true' then 1 else 0 end
+  autoCloseTime:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'autoCloseTime')
+  virtualEnv:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'virtualEnv')
+  filename:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'filename')
 keys:
   primary: id

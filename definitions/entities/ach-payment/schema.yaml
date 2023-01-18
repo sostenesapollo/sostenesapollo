@@ -27,7 +27,7 @@ columns:
     type: varchar
     length: 255
     path: JSON_EXTRACT_STRING(`_source`, 'company','identification')
-  createdEst:
+  createdEST:
     type: varchar
     length: 255
     path: CONVERT_TZ(JSON_EXTRACT_STRING (`_source`,'created'), 'GMT', 'America/New_York')
@@ -51,5 +51,37 @@ columns:
     type: varchar
     length: 255
     path: JSON_EXTRACT_STRING (`_source`,'replicationGroup')
+  descriptiveDate:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'descriptiveDate')
+  transactionCode:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'transactionCode')
+  subType:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'subType')
+  submerchantMerchantID:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'submerchant', 'merchantId')
+  sec:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'standardEntryClass')
+  receiverIdentificationName:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'receiver', 'identification', 'name')
+  amount:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'amount')
+  effectiveDate:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'effectiveDate')
 keys:
   primary: id
