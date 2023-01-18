@@ -7,6 +7,18 @@ columns:
   _source:
     type: json
     allowNull: !!bool 'false'
+  bank:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'bank')
+  bankNumber:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'bankNumber')
+  deleted:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'deleted')
   system:
     type: varchar
     length: 255
@@ -15,5 +27,13 @@ columns:
     type: varchar
     length: 255
     path: JSON_EXTRACT_STRING(`_source`, 'processor')
+  time:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'time')
+  timezone:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'timezone')
 keys:
   primary: id

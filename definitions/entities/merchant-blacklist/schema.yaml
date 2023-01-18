@@ -7,6 +7,18 @@ columns:
   _source:
     type: json
     allowNull: !!bool 'false'
+  accountId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'accountId')
+  merchantId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'merchantId')
+  facilitatorId:
+    type: varchar
+    length: 255
+    path: JSON_EXTRACT_STRING(`_source`, 'facilitatorId')
 
 keys:
   primary: id

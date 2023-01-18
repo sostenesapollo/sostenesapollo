@@ -7,17 +7,13 @@ columns:
   _source:
     type: json
     allowNull: !!bool 'false'
-  error:
+  system:
     type: varchar
     length: 255
-    path: JSON_EXTRACT_STRING(`_source`, 'error')
-  request:
+    path: JSON_EXTRACT_STRING(`_source`, 'system')
+  processor:
     type: varchar
     length: 255
-    path: JSON_EXTRACT_STRING(`_source`, 'request')
-  reject:
-    type: varchar
-    length: 255
-    path: JSON_EXTRACT_STRING(`_source`, 'reject')
+    path: JSON_EXTRACT_STRING(`_source`, 'processor')
 keys:
   primary: id
