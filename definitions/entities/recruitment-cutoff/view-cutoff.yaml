@@ -1,0 +1,9 @@
+id: ~
+_source: ~
+bank: JSON_EXTRACT_STRING(`_source`, 'bank')
+bankNumber: JSON_EXTRACT_STRING(`_source`, 'bankNumber')
+deleted: JSON_EXTRACT_STRING(`_source`, 'deleted')
+processor: JSON_EXTRACT_STRING(`_source`, 'processor')
+system: JSON_EXTRACT_STRING(`_source`, 'system')
+time: JSON_EXTRACT_STRING(`_source`, 'time')
+timezone: JSON_EXTRACT_STRING(`_source`, 'timezone')

@@ -1,0 +1,19 @@
+meta:
+  key: Recruitment_Cutoff
+persistence:
+  table:
+    name: RECRUITMENT_CUTOFF
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+      default:
+        $ref: view-default.yaml
+      cutoff:
+        $ref: view-cutoff.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: recruitment.cutoff
+pipelines:
+  streamliner: []
+name: Recruitment Cutoffs
