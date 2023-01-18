@@ -5,3 +5,8 @@ approved: JSON_EXTRACT_STRING(`_source`, 'response', 'approved')
 status: JSON_EXTRACT_STRING(`_source`, 'status')
 transactionType: JSON_EXTRACT_STRING(`_source`, 'transactionType')
 created: JSON_EXTRACT_STRING(`_source`, 'created')
+batchId: ~
+approved: ~
+status: ~
+transactionType: ~
+created: ~
