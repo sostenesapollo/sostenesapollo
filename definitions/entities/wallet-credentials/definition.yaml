@@ -1,0 +1,19 @@
+meta:
+  key: Wallet_Credential
+encryptedPaths:
+  - privateKey
+persistence:
+  table:
+    name: WALLET_CREDENTIAL
+    database: payment
+    schema:
+      $ref: schema.yaml
+    view:
+       default:
+        $ref: view.yaml
+  topic:
+    $ref: ../../common/kafka-topic.yaml
+    name: wallet.credential
+pipelines:
+  streamliner: []
+name: Credential for tenants/merchants for mobile wallets
