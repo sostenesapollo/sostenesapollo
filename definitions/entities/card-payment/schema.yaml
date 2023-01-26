@@ -18,10 +18,6 @@ columns:
     type: varchar
     length: 255
     path: JSON_EXTRACT_STRING(`_source`, 'batchId')
-  batchId:
-    type: varchar
-    length: 255
-    path: JSON_EXTRACT_STRING(`_source`, 'batchId')
   approved:
     type: varchar
     length: 255
@@ -78,10 +74,6 @@ columns:
     type: varchar
     length: 255
     path: JSON_EXTRACT_STRING(`_source`, 'merchant', 'number')
-  originalAmount:
-    type: varchar
-    length: 255
-    path: JSON_EXTRACT_STRING(`_source`, 'originalAmount')
   originalAmount:
     type: varchar
     length: 255
