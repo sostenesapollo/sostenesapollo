@@ -154,24 +154,24 @@ const Title = () => {
     <div className="flex">
       {/* <h2 id="industry-title" class="print:text-6xl text-center lg:text-xl md:text-md mr-auto text-md font-semibold text-gray-750 pb-px"> */}
         {/* Software Engineer */}
-        <div  className="w-auto" href="https://github.com/sostenesapollo" target="_blank" rel="noreferrer">
+        <a  className="w-auto" href="https://github.com/sostenesapollo" target="_blank" rel="noreferrer">
           <GithubIcon className="mr-2"/>
-        </div>
-        <div  className="w-auto" href="https://twitter.com/SostenesApollo" target="_blank" rel="noreferrer">
+        </a>
+        <a  className="w-auto" href="https://twitter.com/SostenesApollo" target="_blank" rel="noreferrer">
           <TwitterIcon className="mr-2"/>
-        </div>
-        <div  className="w-auto" href="https://mail.google.com/mail/?view=cm&fs=1&to=sostenesapollo25@gmail.com" target="_blank" rel="noreferrer">
+        </a>
+        <a  className="w-auto" href="https://mail.google.com/mail/?view=cm&fs=1&to=sostenesapollo25@gmail.com" target="_blank" rel="noreferrer">
           <GmailIcon className="mr-2"/>
-        </div>
-        <div  className="w-auto" href="https://www.linkedin.com/in/sostenesapollo/" target="_blank" rel="noreferrer">
+        </a>
+        <a  className="w-auto" href="https://www.linkedin.com/in/sostenesapollo/" target="_blank" rel="noreferrer">
           <LinkedInIcon className="mr-2"/>
-        </div>
-        <div  className="w-auto" href="https://www.youtube.com/channel/UCL86DlZsoIU3-kjqiF662vg" target="_blank" rel="noreferrer">
+        </a>
+        <a  className="w-auto" href="https://www.youtube.com/channel/UCL86DlZsoIU3-kjqiF662vg" target="_blank" rel="noreferrer">
           <YoutubeIcon className="mr-2"/>
-        </div>
-        <div  className="w-auto" href="https://wa.me/+5599988284904" target="_blank" rel="noreferrer">
+        </a>
+        <a  className="w-auto" href="https://wa.me/+5599988284904" target="_blank" rel="noreferrer">
           <WhatsappIcon className="mr-2"/>
-        </div>
+        </a>
       {/* </h2> */}
     </div>
   </div>
