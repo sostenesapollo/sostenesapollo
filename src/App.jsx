@@ -105,7 +105,7 @@ const moreTools = [
   {name:"Digital Ocean", iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/DigitalOcean_icon.svg/2048px-DigitalOcean_icon.svg.png'}
 ]
 
-const MeIcon = ({className=""}) => <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className={`inline-block p-1 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out ${className}`} style={{backgroundColor:'#333'}}>
+const MeIcon = ({className="", onClick}) => <button onClick={onClick} type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className={`inline-block p-1 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out ${className}`} style={{backgroundColor:'#333'}}>
   <img src="me.jpeg" alt="ME" className={`inline-block text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-12 sm:w-20 ${className}`}/>
 </button>
 
@@ -146,7 +146,7 @@ const Title = () => {
         <div class="text-center text-2xl initial">A</div>
       </div>
       <h1 class="print:text-6xl lg:text-6xl md:text-4xl mr-auto text-3xl font-semibold text-gray-750 pb-px">
-        <MeIcon/> 
+        <MeIcon onClick={()=>{alert('🤕 Ouch, your click is hurting me !')}}/> 
         Sóstenes Apollo
       </h1>
     </div>
