@@ -9,7 +9,6 @@ resources:
     cpu: 75m
     memory: 128Mi
   limits:
-    cpu: 350m
     memory: 300Mi
 secrets:
   - name: memsql-password
