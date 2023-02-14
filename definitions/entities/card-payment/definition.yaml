@@ -23,6 +23,8 @@ persistence:
         $ref: view-netamount.yaml
       network:
         $ref: view-network.yaml
+      passport:
+        $ref: view-passport.yaml
   topic:
     name: card.payment
     partitions: 5
