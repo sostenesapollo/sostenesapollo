@@ -1,0 +1,46 @@
+columns:
+  id:
+    type: varchar
+    length: 255
+    allowNull: !!bool 'false'
+  _source:
+    type: json
+    allowNull: !!bool 'false'
+  status:
+    type: varchar
+    length: 32
+    path: _source ->> '$.status'
+  filename:
+    type: varchar
+    length: 255
+    path: _source ->> '$.filename'
+  batchId:
+    type: varchar
+    length: 255
+    path: _source ->> '$.batchId'
+  error:
+    type: varchar
+    length: 255
+    path: _source ->> '$.error'
+  companyName:
+    type: varchar
+    length: 255
+    path: _source ->> '$.company.name'
+  companyIdentification:
+    type: varchar
+    length: 255
+    path: _source ->> '$.company.identification'
+  createdEst:
+    type: datetime
+    length: 3
+    path: CONVERT_TZ(_source ->> '$.created', 'GMT', 'America/New_York')
+  modifiedEST:
+    type: datetime
+    length: 3
+    path: CONVERT_TZ(_source ->> '$.modified', 'GMT', 'America/New_York')
+  externalId:
+    type: varchar
+    length: 3
+    path: timestamp(_source ->> '$.externalId')
+keys:
+  primary: id

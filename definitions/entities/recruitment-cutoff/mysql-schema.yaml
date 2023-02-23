@@ -1,0 +1,22 @@
+columns:
+  id:
+    type: varchar
+    length: 255
+    allowNull: !!bool 'false'
+  _source:
+    type: json
+    allowNull: !!bool 'false'
+  system:
+    type: varchar
+    length: 255
+    path: _source ->> '$.system'
+  processor:
+    type: varchar
+    length: 32
+    path: _source ->> '$.merchant.processor.name'
+  platform:
+    type: varchar
+    length: 32
+    path: ifnull(_source ->> '$.merchant.processor.platform', case when _source ->> '$.merchant.processor.name' = 'firstdata' then 'north' else _source ->> '$.merchant.processor.name' end)
+keys:
+  primary: id
