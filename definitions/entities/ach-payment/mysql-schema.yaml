@@ -1,0 +1,86 @@
+columns:
+  id:
+    type: varchar
+    length: 255
+    allowNull: !!bool 'false'
+  _source:
+    type: json
+    allowNull: !!bool 'false'
+  status:
+    type: varchar
+    length: 32
+    path: _source ->> '$.status'
+  filename:
+    type: varchar
+    length: 255
+    path: _source ->> '$.fileName'
+  batchId:
+    type: varchar
+    length: 255
+    path: _source ->> '$.batchId'
+  companyName:
+    type: varchar
+    length: 255
+    path: _source ->> '$.company.name'
+  companyIdentification:
+    type: varchar
+    length: 255
+    path: _source ->> '$.company.identification'
+  createdEST:
+    type: datetime
+    length: 3
+    path: CONVERT_TZ(_source ->> '$.created', 'GMT', 'America/New_York')
+  modifiedEST:
+    type: datetime
+    length: 3
+    path: CONVERT_TZ(_source ->> '$.modified', 'GMT', 'America/New_York')
+  externalId:
+    type: varchar
+    length: 255
+    path: _source ->> '$.externalId'
+  virtualEnv:
+    type: varchar
+    length: 255
+    path: _source ->> '$.virtualEnv'
+  tenantId:
+    type: varchar
+    length: 255
+    path: _source ->> '$.tenantId'
+  replicationGroup:
+    type: varchar
+    length: 255
+    path: _source ->> '$.replicationGroup'
+  descriptiveDate:
+    type: varchar
+    length: 255
+    path: _source ->> '$.descriptiveDate'
+  transactionCode:
+    type: varchar
+    length: 255
+    path: _source ->> '$.transactionCode'
+  subType:
+    type: varchar
+    length: 255
+    path: _source ->> '$.subType'
+  submerchantMerchantID:
+    type: varchar
+    length: 255
+    path: _source ->> '$.submerchant.merchantId'
+  sec:
+    type: varchar
+    length: 255
+    path: _source ->> '$.standardEntryClass'
+  receiverIdentificationName:
+    type: varchar
+    length: 255
+    path: _source ->> '$.receiver.identification.name'
+  amount:
+    type: decimal
+    length: 19,4
+    path: _source ->> '$.amount'
+  effectiveDate:
+    type: varchar
+    length: 255
+    path: _source ->> '$.effectiveDate'
+keys:
+  primary: id
