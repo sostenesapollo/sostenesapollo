@@ -5,7 +5,7 @@ import { loadFull } from "tsparticles";
 const experiences= [
   {
     title:'Priority Payment Systems - BairesDev',
-    year: '2021 - 2024',
+    year: '2021 - 2025',
     location: 'Alphareta, GA, US',
     description: `
     I was responsible for the development of payment microservices using node.js and TDD practices, with a focus on delivering high-quality, scalable solutions. My technical skills in Javascript, Typescript, and C# enabled me to effectively develop and maintain these microservices, utilizing Chai and Jest for test-driven development. My contributions significantly improved the reliability and performance of the payment microservices, resulting in a 25% increase in transaction processing speed. I also played a key role in the maintenance of Kafka, Redis, streamliners, and APIs for these microservices.
