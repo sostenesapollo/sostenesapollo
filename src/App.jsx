@@ -4,6 +4,18 @@ import { loadFull } from "tsparticles";
 
 const experiences= [
   {
+    title:'SaaS Developer - pedegas.com & giftsqr.com',
+    year: '2023 - 2025',
+    location: 'Brazil',
+    description: `
+    Developed and launched two successful SaaS platforms serving clients across multiple Brazilian states. Created pedegas.com, a comprehensive business management platform featuring financial control, inventory management, detailed analytics and reports, mobile app with real-time notifications, WhatsApp integration for automated customer service, online catalog, and complete customer management system. Also developed giftsqr.com, an innovative QR code platform for creating personalized experiences including love surprises with relationship counters, AI image generation, and event photo/video collection systems. Both platforms built with modern tech stack and integrated payment solutions.
+    `,
+    usefullLinks: [
+      {name: 'Pedegas', url: 'https://pedegas.com'},
+      {name: 'Gifts QR', url: 'https://giftsqr.com'}
+    ]
+  },
+  {
     title:'Priority Payment Systems - BairesDev',
     year: '2021 - 2025',
     location: 'Alphareta, GA, US',
