@@ -5,7 +5,7 @@ import { loadFull } from "tsparticles";
 const experiences = [
   {
     company: "SaaS Developer Solo",
-    period: "2017 - Today",
+    period: "2025 - Today",
     location: "Remote",
     achievements: [
       "Built and scaled Pedegas.com, an AI-powered platform for stock, client, and order management, reaching $500 MRR.",
