@@ -1,461 +1,482 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import Particles from "react-particles";
-import { loadFull } from "tsparticles"; 
+import { loadFull } from "tsparticles";
 
-const experiences= [
+const experiences = [
   {
-    title:'SaaS Developer - pedegas.com & giftsqr.com',
-    year: '2023 - 2025',
-    location: 'Brazil',
-    description: `
-    Developed and launched two successful SaaS platforms serving clients across multiple Brazilian states. Created pedegas.com, a comprehensive business management platform featuring financial control, inventory management, detailed analytics and reports, mobile app with real-time notifications, WhatsApp integration for automated customer service, online catalog, and complete customer management system. Also developed giftsqr.com, an innovative QR code platform for creating personalized experiences including love surprises with relationship counters, AI image generation, and event photo/video collection systems. Both platforms built with modern tech stack and integrated payment solutions.
-    `,
-    usefullLinks: [
-      {name: 'Pedegas', url: 'https://pedegas.com'},
-      {name: 'Gifts QR', url: 'https://giftsqr.com'}
+    company: "SaaS Developer Solo",
+    period: "2017 - Today",
+    location: "Remote",
+    achievements: [
+      "Built and scaled Pedegas.com, an AI-powered platform for stock, client, and order management, reaching $500 MRR.",
+      "Developed and maintained Giftsqr.com, a QR code generator SaaS for couples and events, achieving $400 MRR."
+    ],
+    links: [
+      { name: "Pedegas", url: "https://pedegas.com" },
+      { name: "Gifts QR", url: "https://giftsqr.com" }
     ]
   },
   {
-    title:'Priority Payment Systems - BairesDev',
-    year: '2021 - 2025',
-    location: 'Alphareta, GA, US',
-    description: `
-    I was responsible for the development of payment microservices using node.js and TDD practices, with a focus on delivering high-quality, scalable solutions. My technical skills in Javascript, Typescript, and C# enabled me to effectively develop and maintain these microservices, utilizing Chai and Jest for test-driven development. My contributions significantly improved the reliability and performance of the payment microservices, resulting in a 25% increase in transaction processing speed. I also played a key role in the maintenance of Kafka, Redis, streamliners, and APIs for these microservices.
-    `,
-    usefullLinks: [
-      {name: 'BairesDev', url: 'bairesdev.com'},
-      {name: 'Priority Payment Systems', url: 'https://prioritycommerce.com/smb-payments/'}
+    company: "Priority Payment Systems / BairesDev",
+    period: "2022-2025",
+    location: "Alpharetta GA, US (Remote)",
+    achievements: [
+      "Developed and maintained microservices for Mastercard, Visa, Amex.",
+      "Integrated Kafka, Redis, PostgreSQL, MySQL.",
+      "Testing with Jest, Chai, Mocha (100% coverage).",
+      "Node.js, C#"
+    ],
+    links: [
+      { name: "BairesDev", url: "https://bairesdev.com" },
+      { name: "Priority Payment Systems", url: "https://prioritycommerce.com/smb-payments/" }
     ]
   },
   {
-    title:'Digitro - NKEY',
-    year: '2022',
-    location: 'Santa Catarina, BR',
-    description: `
-    As a seasoned backend developer at Digitro, I played a key role in the development of a health platform that connected professionals and patients via node.js applications using TDD methodologies and NestJS. My extensive experience with Docker, Docker Compose, and various databases (such as Postgres and MySQL) allowed me to consistently deliver high-quality, scalable solutions that met the needs of both professionals and patients. In addition, I effectively utilized RabbitMQ and Kafka to integrate and manage various services, and contributed to the maintenance of tools such as GitHub, Jenkins, ECS, and ECR. My technical expertise and dedication to excellence enabled me to effectively develop and maintain a wide range of complex systems within this critical healthcare platform.
-    `,
-    referal: 'https://drive.google.com/file/d/1gevSgJksQavD3flyQAVyP5ejhDOmFgLs/view?usp=sharing',
-    usefullLinks: [
-      {name: 'Nkey', url: 'http://nkey.com.br/'},
-      {name: 'Dígitro', url: 'https://www.digitro.com/'}
+    company: "Nkey",
+    period: "2022-2023",
+    location: "Santa Catarina RS, Brazil (Remote)",
+    achievements: [
+      "Led health platform development with Node.js, NestJS.",
+      "Used Docker, PostgreSQL, MySQL for scalable solutions.",
+      "Supported thousands of simultaneous connections."
+    ],
+    links: [
+      { name: "Nkey", url: "http://nkey.com.br/" },
+      { name: "Dígitro", url: "https://www.digitro.com/" }
     ]
   },
   {
-    title:'Bank of Brazil',
-    year: '2022',
-    location: 'Brasília DF, BR',
-    description: `
-    As an infrastructure analyst and backend developer at Bank of Brazil, I was responsible for the development of microservices that automated database processes using Ansible, Python, Jupyter, Pandas, Flask, and K8s. My expertise in these technologies enabled me to effectively develop and maintain a range of complex systems, ensuring the smooth operation of critical processes. In addition, I configured Prometheus and Grafana to expose metrics of running pods in Kubernetes, enabling the monitoring and optimization of key performance indicators. My technical skills and attention to detail enabled me to consistently deliver high-quality, scalable solutions that met the needs of the business.
-    `,
-    usefullLinks: [
-      {name: 'Fastzap', url: 'https://www.bb.com.br/site/'}
+    company: "Bank of Brazil / GlobalHitss",
+    period: "2022-2023",
+    location: "Brasilia DF, Brazil",
+    achievements: [
+      "Automated microservices to reduce AWS costs (-20%).",
+      "Monitoring with Grafana, Prometheus."
+    ],
+    links: [
+      { name: "Bank of Brazil", url: "https://www.bb.com.br/site/" }
     ]
   },
   {
-    title:'Fastzap',
-    year: '2017 - 2018',
-    location: 'Teresina PI, BR',
-    description: `
-      As a developer at Fastzap/Blubots, I played a key role in the creation of API's for messaging platforms such as WhatsApp, Telegram, Facebook, and Instagram using Typescript. My development of data extraction and analysis crawlers using technologies such as Puppeteer, Selenium, MongoDB, PM2, Digital Ocean, AWS, Heroku, Docker, Dokku, and MySQL greatly impacted the efficiency and effectiveness of our processes. I consistently demonstrated a strong commitment to good programming practices and implemented commit patterns on GitHub to ensure the highest level of quality. Additionally, my development of API's using Python, Django, and Flask, as well as the implementation of queuing systems using RabbitMq, BeeQueue, and Bull, greatly improved the performance of our systems. My use of Elastic Search and development of charts using Kibana enhanced the searchability and visualization of data, respectively. Overall, my technical expertise and dedication to excellence enabled me to significantly contribute to the success of the business.
-    `,
-    usefullLinks: [
-      {name: 'Fastzap', url: 'https://www.fastzap.chat/'}
+    company: "Tsuru Bots",
+    period: "2017-2018",
+    location: "Teresina PI, Brazil (Remote)",
+    achievements: [
+      "Built bots and crawlers with Node.js, Python, Puppeteer.",
+      "Developed APIs for WhatsApp, Instagram, Facebook.",
+      "Reduced external API usage by 70%."
+    ],
+    links: [
+      { name: "Fastzap", url: "https://www.fastzap.chat/" }
     ]
   },
   {
-    title:'Apollo Gás',
-    year: '2016 - 2023',
-    location: 'Caxias MA, BR',
-    description: `
-      As a developer at Apollo Gás, I was involved in the creation of POS systems using Electron. My development of reliable API's using Python and Flask, and their integration with the frontend, was critical to the success of the project. I also implemented caching strategies using Redis to improve the performance of the system. In addition, I developed static pages using a range of tools such as React, VueJS, jQuery, and Websockets. I also made significant improvements to queries in the MySQL database, enabling the system to operate more efficiently. My work also included the transition of the system from a local environment to a web-based platform using NextJS. To ensure the scalability and high availability of the system, I implemented Dockerization and made improvements using NGINX and Docker. My technical skills and attention to detail enabled me to consistently deliver high-quality, reliable solutions that met the needs of the business.
-    `,
-    usefullLinks: [
-      {name: 'Apollo Gás', url: 'https://www.apollogas.com.br/'}
-    ]
-  },
-  {
-    title:'Apollo Tech / AEE Publicity',
-    year: '2016 - 2023',
-    location: 'Caxias MA, BR',
-    description: `
-      Developed multiple solutions for different products
-    `,
-    usefullLinks: [
-      {name: 'Apollo Tech', url: 'https://apollotecx.github.io/'},
-      {name: 'Sanserv Santização', url: 'https://sanservsanitizacao.com.br/'}, 
-      {name: 'Águia Express'}, 
+    company: "Apollo Gas",
+    period: "2016-2019",
+    location: "Caxias MA, Brazil",
+    achievements: [
+      "POS systems with Electron, Python, Flask.",
+      "Frontend with React, Vue, jQuery, Websockets.",
+      "Migrated to NextJS, Dockerized with NGINX."
+    ],
+    links: [
+      { name: "Apollo Gás", url: "https://www.apollogas.com.br/" }
     ]
   }
-]
+];
 
-const langs = [
-  {name:"Typescript", iconUrl: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg'},
-  {name:"Javascript", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg'},
-  {name:"Python", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'},
-  {name:".Net", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg'},
-  {name:"PHP", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg'},
-]
+const education = [
+  { institution: "Federal University of Piauí", degree: "Electrical Engineering (incomplete)" },
+  { institution: "Federal Institute of Maranhão", degree: "IT Technician" }
+];
 
-const tools = [
-  {name:"React", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg'},
-  {name:"Nestjs", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg'},
-  {name:"Nextjs", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg'},
-  {name:"Nodejs", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg'},
-  {name:"Postgres", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg'},
-  {name:"Mysql", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg'},
-  {name:"MongoDB", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg'},  
-  {name:"Redis", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-plain.svg'},
-  {name:"Kafka", iconUrl: 'https://openwhisk.apache.org/images/icons/icon-kafka-white-trans.png'},
-  {name:"Puppeteer", iconUrl: 'https://www.svgrepo.com/show/354228/puppeteer.svg'},  
-]
+const techStack = [
+  { name: "AWS", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg', noFilter: true },
+  { name: "GCP", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg' },
+  { name: "Node.js", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+  { name: "Python", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: "C#", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg' },
+  { name: "React", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+  { name: "Remix", icon: 'https://raw.githubusercontent.com/remix-run/remix/main/packages/remix/public/favicon.svg', noFilter: true },
+  { name: "Next.js", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg' },
+  { name: "NestJS", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain-wordmark.svg', noFilter: true },
+  { name: "Vue.js", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg' },
+  { name: "PHP", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
+  { name: "Docker", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+  { name: "Kubernetes", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg' },
+  { name: "Ansible", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg' },
+  { name: "Terraform", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original-wordmark.svg', noFilter: true },
+  { name: "TypeScript", icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg' },
+  { name: "PostgreSQL", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+  { name: "MongoDB", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+  { name: "Redis", icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-plain.svg' },
+  { name: "Kafka", icon: 'https://openwhisk.apache.org/images/icons/icon-kafka-white-trans.png', noFilter: true },
+];
 
-const moreTools = [
-  {name:"Heroku", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain.svg'},  
-  {name:"kubernetes", iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg'},
-  {name:"Teraform", iconUrl: 'https://icons-for-free.com/download-icon-Terraform-1329545833434920628_512.png'},
-  {name:"AWS", iconUrl: 'https://static-00.iconduck.com/assets.00/aws-icon-512x512-hniukvcn.png'},
-  {name:"Digital Ocean", iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/DigitalOcean_icon.svg/2048px-DigitalOcean_icon.svg.png'}
-]
+const socialLinks = [
+  { name: "GitHub", url: "https://github.com/sostenesapollo", icon: "github" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/sostenesapollo/", icon: "linkedin" },
+  { name: "Twitter", url: "https://twitter.com/SostenesApollo", icon: "twitter" },
+  { name: "Email", url: "mailto:sostenesapollo25@gmail.com", icon: "email" },
+  { name: "WhatsApp", url: "https://wa.me/+5599988284904", icon: "whatsapp" },
+  { name: "CV", url: "https://docs.google.com/document/d/1qUf3PMYQoJNL-5P1Pt3HmB7L-P7ebl0Efs_O79bT874/edit?usp=sharing", icon: "cv" },
+];
 
-const MeIcon = ({className="", onClick}) => <button onClick={onClick} type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className={`inline-block p-1 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out ${className}`} style={{backgroundColor:'#333'}}>
-  <img src="sostenes.jpeg" alt="ME" className={`inline-block text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-12 sm:w-20 ${className}`}/>
-</button>
+const Icon = ({ name, className = "" }) => {
+  const icons = {
+    github: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+      </svg>
+    ),
+    linkedin: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+    ),
+    twitter: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+      </svg>
+    ),
+    email: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+    ),
+    whatsapp: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+    ),
+    cv: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </svg>
+    ),
+  };
+  return icons[name] || null;
+};
 
-const GithubIcon = ({className=""}) => <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className={`inline-block p-2 mb- text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out ${className}`} style={{backgroundColor:'#333'}}>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="w-7 h-7"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-</button>
-
-const ResumeIcon = ({className=""}) => <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className={`flex inline-block p-2 mb- text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out ${className}`} style={{backgroundColor:'#333'}}>
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-</svg>
-<div className="pt-1 pl-2">
-  Donwload CV
-</div>
-
-</button>
-
-const TwitterIcon= ({className=""}) => <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className={`inline-block p-2 mb-2 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out ${className}`} style={{backgroundColor:'#1da1f2'}}>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-7 h-7"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
-</button>
-
-const GmailIcon= ({className=""}) => <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className={`inline-block p-2 mb-2 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out ${className}`} style={{backgroundColor:'#ea4335'}}>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512" class="w-7 h-7"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg>
-</button>
-
-const LinkedInIcon= ({className=""}) => <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className={`inline-block p-2 mb-2 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out ${className}`} style={{backgroundColor:'#0077b5'}}>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-7 h-7"><path fill="currentColor" d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
-</button>
-
-const YoutubeIcon= ({className=""}) => <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className={`inline-block p-2 mb-2 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out ${className}`} style={{backgroundColor:'#ff0000'}}>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-7 h-7"><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
-</button>
-
-const WhatsappIcon= ({className=""}) => <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className={`inline-block p-2 mb-2 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out ${className}`} style={{backgroundColor:'#128c7e'}}>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-7 h-7"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-
-</button>
-
-
-
-
-
-const Title = () => {
-  return <div class="flex row-gap-5 xl:flex-row flex-col flex-wrap items-center mb-5 md:mb-2 border-b-2 border-opacity-50 border-gray-400">  
-    <div className="flex grow">
-      <div class="initials-container mr-5 text-base leading-none pb-2 pt-2 text-white bg-purple-800 font-medium px-3 hidden xl:block">
-        <div class="initial text-center text-2xl pb-1">S</div>
-        <div class="text-center text-2xl initial">A</div>
-      </div>
-      <h1 class="print:text-6xl lg:text-6xl md:text-4xl mr-auto text-3xl font-semibold text-gray-750 pb-px">
-        <MeIcon onClick={()=>{alert('🤕 Ouch, your click is hurting me !')}}/> 
-        Sóstenes Apollo
-      </h1>
-    </div>
-
-    <div className="flex">
-      {/* <h2 id="industry-title" class="print:text-6xl text-center lg:text-xl md:text-md mr-auto text-md font-semibold text-gray-750 pb-px"> */}
-        {/* Software Engineer */}
-        <a  className="w-auto" href="https://docs.google.com/document/d/1qUf3PMYQoJNL-5P1Pt3HmB7L-P7ebl0Efs_O79bT874/edit?usp=sharing" target="_blank" rel="noreferrer">
-          <ResumeIcon className="mr-2"/>
-        </a>
-        <a  className="w-auto" href="https://github.com/sostenesapollo" target="_blank" rel="noreferrer">
-          <GithubIcon className="mr-2"/>
-        </a>
-        <a  className="w-auto" href="https://twitter.com/SostenesApollo" target="_blank" rel="noreferrer">
-          <TwitterIcon className="mr-2"/>
-        </a>
-        <a  className="w-auto" href="https://mail.google.com/mail/?view=cm&fs=1&to=sostenesapollo25@gmail.com" target="_blank" rel="noreferrer">
-          <GmailIcon className="mr-2"/>
-        </a>
-        <a  className="w-auto" href="https://www.linkedin.com/in/sostenesapollo/" target="_blank" rel="noreferrer">
-          <LinkedInIcon className="mr-2"/>
-        </a>
-        <a  className="w-auto" href="https://www.youtube.com/channel/UCL86DlZsoIU3-kjqiF662vg" target="_blank" rel="noreferrer">
-          <YoutubeIcon className="mr-2"/>
-        </a>
-        <a  className="w-auto" href="https://wa.me/+5599988284904" target="_blank" rel="noreferrer">
-          <WhatsappIcon className="mr-2"/>
-        </a>
-      {/* </h2> */}
-    </div>
-  </div>
-}
-
-
-const RightArrow = ({className=""}) => <span class={`-ml-2 pr-2 -pl-0 select-none text-white-600 ${className}`}>›</span>
-
-const Experience = ({
-  experience: {
-    title="",
-    year="",
-    location="",
-    description='',
-    referal="",
-    usefullLinks=[]
-  }
-}) => {
+const ExperienceCard = ({ experience, isExpanded, onToggle }) => {
   return (
-    <section class="mb-4 mt-2">
-      <header>
-        <h3 id="job-title" class="text-lg font-semibold text-white-700 leading-snugish">
-          {title}
-        </h3>
-        <p id="work-date-location" class="leading-normal text-sm text-white-700 mt-1">
-          {year} <strong></strong>
-          <RightArrow className="pl-3"/>
-          {location && location} 
-          <RightArrow className="pl-3"/>
-          {referal&& <a className="text-blue-300" href={referal}>See letter of recommendation</a>}
-        </p>
-      </header>
-      <ul id="work-description-bullets" class="">
-        <li class="mt-2.1 ml-1.5 text-sm text-white-700 leading-normal flex">
-          <RightArrow/>
-          {description.split('\n').map(line=><p>{line}</p>)}
-        </li>
-        {usefullLinks.length > 0 && <b className="pl-3">Usefull links/refs:</b>}
-        <p></p>
-        {usefullLinks.map((e)=>
-          <li className="text-blue-300 pl-7">
-            <a href={e.url} target="_blank" rel="noreferrer" className="text-blue-300">
-              <RightArrow className="pl-3"/> {e.name}
-            </a>
-          </li>
-        )}
-      </ul>
-    </section>
-  )
-}
-
-const ProfileSection = () => {
-  return (
-    <section class="md:mt-8 first:mt-0 pt-6" id="profile">
-      <h2 class="mb-0 font-bold tracking-widest text-sm2 text-purple-200 ">
-        PROFILE
-      </h2>
-
-      <section class="mb-0 grid pt-3">
-        <h3 class="text-lg font-semibold text-white-700 leading-snugish">
-        </h3>
-        <p class="mt-2.1 ml-1.5 text-sm text-white-700 leading-normal">
-          <RightArrow/>
-          <strong>
-            BR Citizen - Originally from Caxias, MA.
-          </strong>
-        </p>
-        <p class="mt-2.1 ml-1.5 text-sm text-white-700 leading-normal">
-          <RightArrow/>
-          Living &amp; residing in Brazil, Brasilia.
-        </p>
-        <p class="mt-2.1 ml-1.5 text-sm text-white-700 leading-normal">
-          <RightArrow/>
-          Available Time Zones:
-          Full overlap APAC &amp; EMEA (Europe).
-          Some US / Canada overlap.
-        </p>
-        <p class="mt-2.1 ml-1.5 text-sm text-white-700 leading-normal">
-          <RightArrow/>
-          Fully remote permanent or contract role on diverse, trusting, and async team.
-        </p>
-      </section>
-    </section>
-  )
-} 
-
-const ExperienceSection = () => {
-  return (
-    <section class="col-span-3 mt-6 first:mt-0" id="experience">
-        <h2 class="mb-4 font-bold tracking-widest text-sm2 text-purple-200">EXPERIENCE</h2>
-        <section class="mb-4.5">
-          {experiences.map(experience=><Experience experience={experience}/>)}
-        </section>
-    </section>
-  )
-}
-
-const ContentHome = () => {
-  return (
-    <section class="print:col-span-2 col-span-3 md:col-span-2 mt-8 first:mt-0 content-center pb-5">
-      <ProfileSection/>
-      <ExperienceSection/>
-    </section>
-  )
-}
-
-const Tech = ({tech:{name, iconUrl}}) => {
-  return (
-    <section class="flex mt-1 content-center items-center text-center space-between">
-      <div>
-        <img src={iconUrl} alt="" className="w-6 h-6 mt-2"/>
-      </div>
-
-      <h3 id="job-title" class="text-lg font-semibold text-white-700 leading-snugish text-center">
-        <p className="pt-2 pl-2">{name}</p>
-      </h3>
-    </section>
-  )
-}
-
-const AditionalSection = () => {
-  return (
-    <>
-      <section class="col-span-3 first:mt-0" id="experience">
-      <h2 class="mb-4 font-bold tracking-widest text-sm2 text-purple-200 text-center lg:text-start">
-            DEV STACK
-          </h2>
-          <section class="flex flex-col mt-1 items-center md:items-start">
-            {langs.map(tech=><Tech tech={tech}/>)}
-          </section>
-      </section>
-
-      <section class="col-span-3 mt-6 first:mt-0" id="experience">
-      <h2 class="mb-4 font-bold tracking-widest text-sm2 text-purple-200 text-center lg:text-start">
-            TOOLS 
-          </h2>
-          <section class="flex flex-col mt-1 items-center md:items-start">
-            {tools.map(tech=><Tech tech={tech}/>)}
-          </section>
-      </section>
-      
-      <section class="col-span-3 mt-6 first:mt-0" id="experience">
-      <h2 class="mb-4 font-bold tracking-widest text-sm2 text-purple-200 text-center lg:text-start">
-        SERVICES AND DEVOPS 
-      </h2>
-      <section class="flex flex-col mt-1 items-center md:items-start">
-        {moreTools.map(tech=><Tech tech={tech}/>)}
-      </section>
-      </section>
-    </>
-  )
-}
-
-
-const ContentInfo = () => {
-  return (
-    <section class="print:col-span-2 col-span-3 md:col-span-2 mt-8 first:mt-0 content-center">
-      <AditionalSection/>
-      {/* <ExperienceSection/> */}
-    </section>
-  )
-}
-
-export default function App() {
-    const particlesInit = useCallback(async engine => {
-        await loadFull(engine);
-    }, []);
-
-    const particlesLoaded = useCallback(async container => {
-        await console.log(container);
-    }, []);
-
-    return (
-      <>
-        <Particles
-            id="tsparticles"
-            init={particlesInit}
-            loaded={particlesLoaded}
-            options={{
-                background: {
-                    color: {
-                        value: "green",
-                    },
-                },
-                fpsLimit: 120,
-                interactivity: {
-                    events: {
-                        onClick: {
-                            enable: true,
-                            mode: "push",
-                        },
-                        onHover: {
-                            enable: true,
-                            mode: "repulse",
-                        },
-                        resize: true,
-                    },
-                    modes: {
-                        push: {
-                            quantity: 4,
-                        },
-                        repulse: {
-                            distance: 200,
-                            duration: 0.4,
-                        },
-                    },
-                },
-                particles: {
-                    color: {
-                        value: "#ffffff",
-                    },
-                    links: {
-                        color: "#ffffff",
-                        distance: 150,
-                        enable: true,
-                        opacity: 0.5,
-                        width: 1,
-                    },
-                    collisions: {
-                        enable: true,
-                    },
-                    move: {
-                        directions: "none",
-                        enable: true,
-                        outModes: {
-                            default: "bounce",
-                        },
-                        random: false,
-                        speed: .4,
-                        straight: false,
-                    },
-                    number: {
-                        density: {
-                            enable: true,
-                            area: 800,
-                        },
-                        value: 80,
-                    },
-                    opacity: {
-                        value: 0.5,
-                    },
-                    shape: {
-                        type: "circle",
-                    },
-                    size: {
-                        value: { min: 1, max: 5 },
-                    },
-                },
-                detectRetina: true,
-            }}
-        />
-        
-        <div className="p-10 mx-auto print:max-w-letter md:max-w-letter md:h-letter xsm:p-8 sm:p-9 md:p-20 md:ml-20 md:mr-20">
-          <Title/>
-          <div class="grid lg:grid-cols-4 gap-20">
-            <ContentHome/>
-            <ContentInfo/>
+    <div className="glass-card border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 rounded-xl overflow-hidden">
+      <button
+        onClick={onToggle}
+        className="w-full p-3 sm:p-4 text-left flex items-start sm:items-center justify-between hover:bg-blue-500/5 transition-colors gap-2"
+      >
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm sm:text-base md:text-lg font-semibold text-white mb-1 break-words">{experience.company}</h3>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-gray-400">
+            <span>{experience.period}</span>
+            <span className="text-blue-400 hidden sm:inline">•</span>
+            <span className="break-words">{experience.location}</span>
           </div>
         </div>
-      </>
-    );
+        <svg
+          className={`w-4 h-4 sm:w-5 sm:h-5 text-blue-400 transition-transform duration-300 flex-shrink-0 ${isExpanded ? 'rotate-180' : ''}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {isExpanded && (
+        <div className="px-3 sm:px-4 pb-3 sm:pb-4 space-y-2 sm:space-y-3 animate-slide-down">
+          <ul className="space-y-1 sm:space-y-2">
+            {experience.achievements.map((achievement, idx) => (
+              <li key={idx} className="text-gray-300 text-xs sm:text-sm flex items-start">
+                <span className="text-blue-400 mr-2 mt-1 flex-shrink-0">●</span>
+                <span className="break-words">{achievement}</span>
+              </li>
+            ))}
+          </ul>
+          {experience.links && experience.links.length > 0 && (
+            <div className="pt-2 border-t border-blue-500/20">
+              <div className="flex flex-wrap gap-2">
+                {experience.links.map((link, idx) => (
+                  link.url ? (
+                    <a
+                      key={idx}
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-400 hover:text-blue-300 text-xs sm:text-sm underline transition-colors break-all"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <span key={idx} className="text-gray-500 text-xs sm:text-sm">{link.name}</span>
+                  )
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 };
+
+export default function App() {
+  const [expandedExperience, setExpandedExperience] = useState(0);
+  const [activeTab, setActiveTab] = useState('about');
+
+  const particlesInit = useCallback(async (engine) => {
+    await loadFull(engine);
+  }, []);
+
+  const toggleExperience = (idx) => {
+    setExpandedExperience(expandedExperience === idx ? null : idx);
+  };
+
+  return (
+    <div className="min-h-screen overflow-hidden relative">
+      {/* Animated Gradient Background - Blue/Black */}
+      <div className="fixed inset-0 bg-gradient-to-br from-black via-slate-900 to-black animate-gradient-shift"></div>
+      
+      {/* Particles Background */}
+      <div className="fixed inset-0 z-0 opacity-30">
+        <Particles
+          id="tsparticles"
+          init={particlesInit}
+          options={{
+            background: { color: { value: "transparent" } },
+            fpsLimit: 120,
+            interactivity: {
+              events: {
+                onHover: { enable: true, mode: "grab" },
+                resize: true,
+              },
+            },
+            particles: {
+              color: { value: "#3b82f6" },
+              links: {
+                color: "#2563eb",
+                distance: 150,
+                enable: true,
+                opacity: 0.2,
+                width: 1,
+              },
+              move: {
+                enable: true,
+                outModes: { default: "bounce" },
+                speed: 0.3,
+              },
+              number: {
+                density: { enable: true, area: 800 },
+                value: 40,
+              },
+              opacity: { value: 0.3 },
+              shape: { type: "circle" },
+              size: { value: { min: 1, max: 3 } },
+            },
+            detectRetina: true,
+          }}
+        />
+      </div>
+
+      {/* Main Content */}
+      <div className="relative z-10 min-h-screen lg:h-screen flex items-start justify-center p-3 sm:p-4 md:p-6 lg:p-8 py-4 sm:py-6">
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:items-stretch lg:h-full">
+          
+          {/* Left Column - About & Social */}
+          <div className="flex flex-col gap-4 lg:h-full">
+            <div className="glass-card p-4 sm:p-6 rounded-xl backdrop-blur-xl bg-black/40 border border-blue-500/20 animate-fade-in lg:h-full flex flex-col">
+              <div className="flex flex-col gap-4 sm:gap-6 flex-1 overflow-y-auto custom-scrollbar">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                  <div className="relative flex-shrink-0 mx-auto sm:mx-0">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full blur-xl opacity-50 animate-pulse"></div>
+                    <img
+                      src="/me.png"
+                      alt="Sóstenes Apollo"
+                      className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-blue-500/50 object-cover shadow-2xl"
+                      onError={(e) => {
+                        e.target.src = 'https://via.placeholder.com/96?text=SA';
+                      }}
+                    />
+                  </div>
+                  <div className="flex-1 text-center sm:text-left">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
+                      Sóstenes Apollo
+                    </h1>
+                    <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 text-xs sm:text-sm md:text-base text-gray-300 mb-2 sm:mb-3">
+                      <span className="text-blue-400 font-medium">Sênior Software Engineer</span>
+                      <span className="text-gray-600 hidden sm:inline">•</span>
+                      <span className="text-blue-400 font-medium">AI Engineer</span>
+                      {/* <span className="text-gray-600 hidden sm:inline">•</span> */}
+                      <span className="text-white">8+ years of experience build Scalable Software</span>
+                    </div>
+                    <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-4 text-xs sm:text-sm text-gray-400">
+                      <span className="flex items-center gap-1">
+                        <span>📍</span> Brazil
+                      </span>
+                      <span className="flex items-center gap-1 break-all">
+                        <span>📧</span> <span className="text-xs sm:text-sm">sostenesapollo25@gmail.com</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-3">
+                  {socialLinks.map((link, idx) => (
+                    <a
+                      key={idx}
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group relative p-2 sm:p-3 rounded-lg bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-400/50 hover:scale-110 transition-all duration-300 flex items-center justify-center glow-blue"
+                      title={link.name}
+                    >
+                      <Icon name={link.icon} className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
+                    </a>
+                  ))}
+                </div>
+                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                Highly experienced Brazilian Backend Developer specializing in scalable microservices, TDD, and full-stack solutions. Proven expertise in Node.js, TypeScript, Python, C#, and modern frameworks like NestJS and NextJS. Skilled in DevOps, including Docker, Kubernetes, Kafka, and cloud platforms (AWS, GCP, Digital Ocean).
+                <br />
+                <br />
+                Available for fully remote roles with extensive overlap across APAC, EMEA, and US time zones.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-gray-300">
+                  <div className="p-3 rounded-lg bg-black/30 border border-blue-500/20">
+                    <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Soft Skills</h4>
+                    <p className="text-gray-400 text-xs sm:text-sm">Communication, flexibility, time management, attention to detail</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-black/30 border border-blue-500/20">
+                    <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Languages</h4>
+                    <p className="text-gray-400 text-xs sm:text-sm">Portuguese (native), English (fluent), Spanish (intermediate)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Tabs and Content */}
+          <div className="flex flex-col gap-4 min-h-[400px] lg:h-full">
+            <div className="glass-card p-3 sm:p-4 rounded-xl backdrop-blur-xl bg-black/40 border border-blue-500/20 flex flex-col h-full min-h-[500px] lg:min-h-0">
+              <div className="flex flex-wrap gap-2 mb-4 flex-shrink-0">
+                <button
+                  onClick={() => setActiveTab('about')}
+                  className={`px-3 sm:px-4 md:px-6 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 flex-1 sm:flex-none ${
+                    activeTab === 'about'
+                      ? 'bg-blue-500/20 border border-blue-400/50 text-white glow-blue-text'
+                      : 'bg-black/20 border border-blue-500/20 text-gray-400 hover:text-white hover:border-blue-400/30'
+                  }`}
+                >
+                  Experience
+                </button>
+                <button
+                  onClick={() => setActiveTab('tech')}
+                  className={`px-3 sm:px-4 md:px-6 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 flex-1 sm:flex-none ${
+                    activeTab === 'tech'
+                      ? 'bg-blue-500/20 border border-blue-400/50 text-white glow-blue-text'
+                      : 'bg-black/20 border border-blue-500/20 text-gray-400 hover:text-white hover:border-blue-400/30'
+                  }`}
+                >
+                  Tech Stack
+                </button>
+                <button
+                  onClick={() => setActiveTab('education')}
+                  className={`px-3 sm:px-4 md:px-6 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 flex-1 sm:flex-none ${
+                    activeTab === 'education'
+                      ? 'bg-blue-500/20 border border-blue-400/50 text-white glow-blue-text'
+                      : 'bg-black/20 border border-blue-500/20 text-gray-400 hover:text-white hover:border-blue-400/30'
+                  }`}
+                >
+                  Education
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-hidden min-h-0 flex flex-col">
+                {activeTab === 'about' && (
+                  <div className="flex-1 overflow-y-auto custom-scrollbar space-y-2 sm:space-y-3 animate-fade-in pr-1 min-h-0">
+                    {experiences.map((exp, idx) => (
+                      <ExperienceCard
+                        key={idx}
+                        experience={exp}
+                        isExpanded={expandedExperience === idx}
+                        onToggle={() => toggleExperience(idx)}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {activeTab === 'tech' && (
+                  <div className="flex-1 overflow-y-auto custom-scrollbar animate-fade-in pr-1 min-h-0">
+                    <div className="p-3 sm:p-4 md:p-6">
+                      <h2 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 glow-blue-text">Technologies</h2>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+                        {techStack.map((tech, idx) => (
+                          <div
+                            key={idx}
+                            className="group p-2 sm:p-3 md:p-4 rounded-lg bg-black/20 border border-blue-500/20 hover:border-blue-400/50 hover:bg-blue-500/10 transition-all duration-300 cursor-pointer"
+                          >
+                            <div className="flex flex-col items-center space-y-1 sm:space-y-2">
+                              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg bg-black/40 p-1 sm:p-2 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <img
+                                  src={tech.icon}
+                                  alt={tech.name}
+                                  className={`w-full h-full object-contain opacity-80 group-hover:opacity-100 ${tech.noFilter ? '' : 'filter brightness-0 invert'}`}
+                                  onError={(e) => {
+                                    // Try fallback URLs for problematic icons
+                                    const fallbacks = {
+                                      'AWS': 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg',
+                                      'Remix': 'https://remix.run/img/logo.svg',
+                                      'NestJS': 'https://nestjs.com/img/logo-small.svg',
+                                      'Terraform': 'https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg',
+                                    };
+                                    if (fallbacks[tech.name] && e.target.src !== fallbacks[tech.name]) {
+                                      e.target.src = fallbacks[tech.name];
+                                    } else {
+                                      e.target.style.display = 'none';
+                                    }
+                                  }}
+                                />
+                              </div>
+                              <span className="text-white text-[10px] sm:text-xs font-medium text-center leading-tight">{tech.name}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'education' && (
+                  <div className="flex-1 overflow-y-auto custom-scrollbar animate-fade-in pr-1 min-h-0">
+                    <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4">
+                      <h2 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 glow-blue-text">Education</h2>
+                      {education.map((edu, idx) => (
+                        <div key={idx} className="p-3 sm:p-4 rounded-lg bg-black/20 border border-blue-500/20">
+                          <h3 className="text-white font-semibold mb-1 text-sm sm:text-base">{edu.institution}</h3>
+                          <p className="text-gray-400 text-xs sm:text-sm">{edu.degree}</p>
+                        </div>
+                      ))}
+                      {/* Separator */}
+                      <div className="h-px w-full bg-gray-800 my-4"></div>
+                      
+                      <div className="mt-4 sm:mt-6 p-3 sm:p-4 rounded-lg bg-black/20 border border-blue-500/20">
+                        <h3 className="text-white font-semibold mb-2 sm:mb-3 text-sm sm:text-base">Soft Skills</h3>
+                        <p className="text-gray-400 text-xs sm:text-sm">Communication, flexibility, time management, attention to detail</p>
+                      </div>
+                      <div className="p-3 sm:p-4 rounded-lg bg-black/20 border border-blue-500/20">
+                        <h3 className="text-white font-semibold mb-2 sm:mb-3 text-sm sm:text-base">Languages</h3>
+                        <p className="text-gray-400 text-xs sm:text-sm">Portuguese (native), English (fluent), Spanish (intermediate)</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
