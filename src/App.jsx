@@ -20,7 +20,7 @@ const experiences = [
       "Three.js",
     ],
     links: [
-      { name: "Propane Studio - DRIL", url: "https://propane.com" },
+      { name: "Propane Studio - DRIL", url: "https://propane.agency/" },
     ]
   },
   {
