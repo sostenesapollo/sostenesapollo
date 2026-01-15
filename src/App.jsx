@@ -4,16 +4,23 @@ import { loadFull } from "tsparticles";
 
 const experiences = [
   {
-    company: "SaaS Developer Solo",
-    period: "2025 - Today",
-    location: "Remote",
+    company: "Propane / Exomindset",
+    period: "2025-Today",
+    location: "Alpharetta GA, US (Remote)",
     achievements: [
-      "Built and scaled Pedegas.com, an AI-powered platform for stock, client, and order management, reaching $500 MRR.",
-      "Developed and maintained Giftsqr.com, a QR code generator SaaS for couples and events, achieving $400 MRR."
+      "Propane Studio - DRIL: Development of a Digital Realty tool for datacenter visualization in Three.js, React, postgres, Localstack, AWS, vite and other tools",
+      "I18n, i18next, react-i18next",
+      "Material-UI",
+      "zustand",
+      "vite",
+      "grcp",
+      "Localstack",
+      "AWS",
+      "postgres",
+      "Three.js",
     ],
     links: [
-      { name: "Pedegas", url: "https://pedegas.com" },
-      { name: "Gifts QR", url: "https://giftsqr.com" }
+      { name: "Propane Studio - DRIL", url: "https://propane.com" },
     ]
   },
   {
@@ -29,6 +36,19 @@ const experiences = [
     links: [
       { name: "BairesDev", url: "https://bairesdev.com" },
       { name: "Priority Payment Systems", url: "https://prioritycommerce.com/smb-payments/" }
+    ]
+  },
+  {
+    company: "SaaS Developer Solo",
+    period: "2025",
+    location: "Remote",
+    achievements: [
+      "Built and scaled Pedegas.com, an AI-powered platform for stock, client, and order management, reaching $500 MRR.",
+      "Developed and maintained Giftsqr.com, a QR code generator SaaS for couples and events, achieving $400 MRR."
+    ],
+    links: [
+      { name: "Pedegas", url: "https://pedegas.com" },
+      { name: "Gifts QR", url: "https://giftsqr.com" }
     ]
   },
   {
