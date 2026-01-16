@@ -4,9 +4,24 @@ import { loadFull } from "tsparticles";
 
 const experiences = [
   {
-    company: "Propane / Exomindset",
-    period: "2025-Today",
+    company: "Priority Payment Systems / BairesDev",
+    period: "2022-2025",
     location: "Alpharetta GA, US (Remote)",
+    achievements: [
+      "Developed and maintained microservices for Mastercard, Visa, Amex.",
+      "Integrated Kafka, Redis, PostgreSQL, MySQL.",
+      "Testing with Jest, Chai, Mocha (100% coverage).",
+      "Node.js, C#"
+    ],
+    links: [
+      { name: "BairesDev", url: "https://bairesdev.com" },
+      { name: "Priority Payment Systems", url: "https://prioritycommerce.com/smb-payments/" }
+    ]
+  },
+  {
+    company: "Propane / Exomindset",
+    period: "2025 - 2026",
+    location: "San Francisco CA, US (Remote)",
     achievements: [
       "Propane Studio - DRIL: Development of a Digital Realty tool for datacenter visualization in Three.js, React, postgres, Localstack, AWS, vite and other tools",
       "I18n, i18next, react-i18next",
@@ -21,21 +36,6 @@ const experiences = [
     ],
     links: [
       { name: "Propane Studio - DRIL", url: "https://propane.agency/" },
-    ]
-  },
-  {
-    company: "Priority Payment Systems / BairesDev",
-    period: "2022-2025",
-    location: "Alpharetta GA, US (Remote)",
-    achievements: [
-      "Developed and maintained microservices for Mastercard, Visa, Amex.",
-      "Integrated Kafka, Redis, PostgreSQL, MySQL.",
-      "Testing with Jest, Chai, Mocha (100% coverage).",
-      "Node.js, C#"
-    ],
-    links: [
-      { name: "BairesDev", url: "https://bairesdev.com" },
-      { name: "Priority Payment Systems", url: "https://prioritycommerce.com/smb-payments/" }
     ]
   },
   {
