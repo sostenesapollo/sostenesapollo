@@ -26,8 +26,8 @@ I'm a Software Engineer "in love with AI", focused on building scalable solution
 
 - **[Pede Gás](https://pedegas.com)**: A specialized platform for gas delivery services.
 - **[GiftSQR](https://giftsqr.com)**: A modern solution for digital gifting and experiences.
-- **[Portfolio](https://sostenesapollo.vercel.app/)**: My personal space where I showcase my work and experiments.
 - **[Habit Tracker](https://github.com/sostenesapollo/habit-tracker)**: SPA App to track daily habits in a calendar
+- **[Portfolio](https://sostenesapollo.vercel.app/)**: My personal space where I showcase my work and experiments.
 
 ---
 
