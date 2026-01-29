@@ -1,6 +1,6 @@
 # Hi, I'm Sóstenes Apollo! 👋
 
-### Software Engineer | Full Stack & AI Enthusiast 🚀
+### Software Engineer | Full Stack Developer | AI Developer
 
 I'm a Software Engineer "in love with AI", focused on building scalable solutions and exploring the boundaries of technology. Currently working on real-world platforms and open-source tools.
 
