@@ -22,7 +22,7 @@ I'm a Software Engineer "in love with AI", focused on building scalable solution
 
 ---
 
-## 📂 Real-World Projects
+## 📂 Some Projects and SaaS
 
 - **[Pede Gás](https://pedegas.com)**: A specialized platform for gas delivery services.
 - **[GiftSQR](https://giftsqr.com)**: A modern solution for digital gifting and experiences.
