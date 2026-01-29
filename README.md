@@ -53,5 +53,6 @@ Advanced Redis viewer to edit, update, create, and filter data with a better UI.
 
 ## 📫 Let's Connect
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sostenesapollo/)
-[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://www.instagram.com/sostenesapollo/)
+[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://www.instagram.com/sostenes_apollo/)
 [![Email](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sostenesapollo@gmail.com)
+[![Twitter(X)](https://img.shields.io/badge/Twitter-000000?&logo=x&logoColor=white)](https://x.com/sostenesapollo)
