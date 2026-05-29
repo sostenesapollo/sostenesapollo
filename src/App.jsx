@@ -331,7 +331,7 @@ export default function App() {
                       <span className="text-gray-600 hidden sm:inline">•</span>
                       <span className="text-blue-400 font-medium">AI Engineer</span>
                       {/* <span className="text-gray-600 hidden sm:inline">•</span> */}
-                      <span className="text-white">8+ years of experience build Scalable Software</span>
+                      <span className="text-white">10+ years of experience build Scalable Software</span>
                     </div>
                     <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-4 text-xs sm:text-sm text-gray-400">
                       <span className="flex items-center gap-1">
