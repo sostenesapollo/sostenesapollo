@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 
@@ -142,6 +142,20 @@ const socialLinks = [
   { name: "CV", url: "https://docs.google.com/document/d/1qUf3PMYQoJNL-5P1Pt3HmB7L-P7ebl0Efs_O79bT874/edit?usp=sharing", icon: "cv" },
 ];
 
+const interfaceTabs = [
+  { id: "about", label: "Experience", socket: "EXP", color: "cyan" },
+  { id: "tech", label: "Tech Stack", socket: "TECH", color: "violet" },
+  { id: "education", label: "Education", socket: "EDU", color: "amber" },
+];
+
+const bootLines = [
+  "APOLLO CORE // BIOS v10.6",
+  "Checking remote systems... OK",
+  "Loading microservice history... OK",
+  "Syncing cloud credentials... OK",
+  "Awaiting operator input."
+];
+
 const Icon = ({ name, className = "" }) => {
   const icons = {
     github: (
@@ -183,23 +197,111 @@ const Icon = ({ name, className = "" }) => {
   return icons[name] || null;
 };
 
-const ExperienceCard = ({ experience, isExpanded, onToggle }) => {
+const createSoundEngine = () => {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContext) {
+    return null;
+  }
+
+  const context = new AudioContext();
+  const master = context.createGain();
+  master.gain.value = 0.18;
+  master.connect(context.destination);
+
+  const resume = async () => {
+    if (context.state === "suspended") {
+      await context.resume();
+    }
+  };
+
+  const tone = async ({ frequency = 440, duration = 0.08, type = "square", gain = 0.12, slideTo }) => {
+    await resume();
+    const now = context.currentTime;
+    const oscillator = context.createOscillator();
+    const envelope = context.createGain();
+
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency, now);
+    if (slideTo) {
+      oscillator.frequency.exponentialRampToValueAtTime(slideTo, now + duration);
+    }
+
+    envelope.gain.setValueAtTime(0.0001, now);
+    envelope.gain.exponentialRampToValueAtTime(gain, now + 0.01);
+    envelope.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+    oscillator.connect(envelope);
+    envelope.connect(master);
+    oscillator.start(now);
+    oscillator.stop(now + duration + 0.02);
+  };
+
+  const staticBurst = async () => {
+    await resume();
+    const bufferSize = context.sampleRate * 0.18;
+    const buffer = context.createBuffer(1, bufferSize, context.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i += 1) {
+      data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
+    }
+
+    const noise = context.createBufferSource();
+    const filter = context.createBiquadFilter();
+    const envelope = context.createGain();
+    const now = context.currentTime;
+
+    filter.type = "bandpass";
+    filter.frequency.value = 1800;
+    filter.Q.value = 0.8;
+    envelope.gain.setValueAtTime(0.08, now);
+    envelope.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+
+    noise.buffer = buffer;
+    noise.connect(filter);
+    filter.connect(envelope);
+    envelope.connect(master);
+    noise.start(now);
+  };
+
+  return {
+    power: async () => {
+      await staticBurst();
+      await tone({ frequency: 86, duration: 0.22, type: "sawtooth", gain: 0.11, slideTo: 220 });
+      setTimeout(() => tone({ frequency: 520, duration: 0.08, type: "triangle", gain: 0.08 }), 130);
+    },
+    click: () => tone({ frequency: 190, duration: 0.045, type: "square", gain: 0.08, slideTo: 95 }),
+    confirm: () => tone({ frequency: 660, duration: 0.07, type: "triangle", gain: 0.08 }),
+    error: async () => {
+      await tone({ frequency: 130, duration: 0.08, type: "sawtooth", gain: 0.1, slideTo: 72 });
+      setTimeout(() => tone({ frequency: 98, duration: 0.08, type: "sawtooth", gain: 0.08 }), 90);
+    },
+    staticBurst,
+    setMuted: (muted) => {
+      master.gain.setTargetAtTime(muted ? 0 : 0.18, context.currentTime, 0.02);
+    }
+  };
+};
+
+const ExperienceCard = ({ experience, isExpanded, onToggle, playClick }) => {
   return (
-    <div className="glass-card border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 rounded-xl overflow-hidden">
+    <div className="glass-card machine-panel border border-cyan-400/20 hover:border-cyan-300/50 transition-all duration-300 rounded-xl overflow-hidden">
       <button
-        onClick={onToggle}
-        className="w-full p-3 sm:p-4 text-left flex items-start sm:items-center justify-between hover:bg-blue-500/5 transition-colors gap-2"
+        onClick={() => {
+          playClick();
+          onToggle();
+        }}
+        className="w-full p-3 sm:p-4 text-left flex items-start sm:items-center justify-between hover:bg-cyan-400/5 transition-colors gap-2"
       >
         <div className="flex-1 min-w-0">
           <h3 className="text-sm sm:text-base md:text-lg font-semibold text-white mb-1 break-words">{experience.company}</h3>
           <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-gray-400">
             <span>{experience.period}</span>
-            <span className="text-blue-400 hidden sm:inline">•</span>
+            <span className="text-cyan-300 hidden sm:inline">•</span>
             <span className="break-words">{experience.location}</span>
           </div>
         </div>
         <svg
-          className={`w-4 h-4 sm:w-5 sm:h-5 text-blue-400 transition-transform duration-300 flex-shrink-0 ${isExpanded ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 sm:w-5 sm:h-5 text-cyan-300 transition-transform duration-300 flex-shrink-0 ${isExpanded ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -212,13 +314,13 @@ const ExperienceCard = ({ experience, isExpanded, onToggle }) => {
           <ul className="space-y-1 sm:space-y-2">
             {experience.achievements.map((achievement, idx) => (
               <li key={idx} className="text-gray-300 text-xs sm:text-sm flex items-start">
-                <span className="text-blue-400 mr-2 mt-1 flex-shrink-0">●</span>
+                <span className="text-cyan-300 mr-2 mt-1 flex-shrink-0">●</span>
                 <span className="break-words">{achievement}</span>
               </li>
             ))}
           </ul>
           {experience.links && experience.links.length > 0 && (
-            <div className="pt-2 border-t border-blue-500/20">
+            <div className="pt-2 border-t border-cyan-400/20">
               <div className="flex flex-wrap gap-2">
                 {experience.links.map((link, idx) => (
                   link.url ? (
@@ -227,7 +329,7 @@ const ExperienceCard = ({ experience, isExpanded, onToggle }) => {
                       href={link.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-blue-400 hover:text-blue-300 text-xs sm:text-sm underline transition-colors break-all"
+                      className="text-cyan-300 hover:text-cyan-200 text-xs sm:text-sm underline transition-colors break-all"
                     >
                       {link.name}
                     </a>
@@ -244,22 +346,424 @@ const ExperienceCard = ({ experience, isExpanded, onToggle }) => {
   );
 };
 
+const CyberDeck = ({
+  activeTab,
+  activeSocket,
+  booted,
+  muted,
+  poweredOn,
+  setActiveTab,
+  setActiveSocket,
+  setMuted,
+  setPoweredOn,
+  setZoomed,
+  sound,
+}) => {
+  const [rotation, setRotation] = useState({ x: -8, y: -14 });
+  const dragStart = useRef(null);
+
+  const currentTab = interfaceTabs.find((tab) => tab.id === activeTab);
+
+  const handlePointerDown = (event) => {
+    dragStart.current = {
+      x: event.clientX,
+      y: event.clientY,
+      rotation,
+    };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event) => {
+    if (!dragStart.current) {
+      return;
+    }
+
+    const deltaX = event.clientX - dragStart.current.x;
+    const deltaY = event.clientY - dragStart.current.y;
+    setRotation({
+      x: Math.max(-22, Math.min(14, dragStart.current.rotation.x - deltaY * 0.08)),
+      y: Math.max(-34, Math.min(34, dragStart.current.rotation.y + deltaX * 0.1)),
+    });
+  };
+
+  const handlePointerUp = () => {
+    dragStart.current = null;
+  };
+
+  const togglePower = () => {
+    const nextPower = !poweredOn;
+    setPoweredOn(nextPower);
+    sound.current?.power();
+  };
+
+  const connectSocket = (tab) => {
+    sound.current?.click();
+    setActiveSocket(tab.id);
+    setActiveTab(tab.id);
+  };
+
+  const tryRestrictedArea = () => {
+    sound.current?.error();
+  };
+
+  return (
+    <section className="cyberdeck-stage" aria-label="Interactive retro terminal">
+      <div className="deck-orbit" aria-hidden="true"></div>
+      <div
+        className={`cyberdeck ${poweredOn ? "is-on" : "is-off"}`}
+        style={{ "--rx": `${rotation.x}deg`, "--ry": `${rotation.y}deg` }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+      >
+        <div className="deck-shadow"></div>
+        <div className="deck-body">
+          <div className="deck-bezel">
+            <button
+              className="crt-screen"
+              onClick={() => {
+                sound.current?.staticBurst();
+                setZoomed(true);
+              }}
+              type="button"
+              aria-label="Zoom into terminal screen"
+            >
+              <div className="screen-glass">
+                <div className="screen-scanlines"></div>
+                {poweredOn ? (
+                  <div className="screen-content">
+                    <div className="screen-header">
+                      <span>MAINFRAME://SOSTENES</span>
+                      <span className="blink-dot">REC</span>
+                    </div>
+                    <div className="boot-log">
+                      {bootLines.map((line, index) => (
+                        <span key={line} style={{ animationDelay: `${index * 120}ms` }}>
+                          &gt; {booted ? line : "Booting..."}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="mini-grid">
+                      {interfaceTabs.map((tab) => (
+                        <span key={tab.id} className={activeTab === tab.id ? "active" : ""}>
+                          {tab.socket}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="screen-callout">
+                      Click screen to enter {currentTab?.label}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="screen-off">
+                    <span>POWER OFF</span>
+                  </div>
+                )}
+              </div>
+            </button>
+          </div>
+
+          <div className="deck-controls">
+            <button
+              className={`power-switch ${poweredOn ? "active" : ""}`}
+              onClick={togglePower}
+              type="button"
+              aria-label="Power terminal"
+            >
+              <span></span>
+            </button>
+            <div className="physical-buttons">
+              {interfaceTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  className={activeTab === tab.id ? "active" : ""}
+                  onClick={() => connectSocket(tab)}
+                  type="button"
+                >
+                  {tab.socket}
+                </button>
+              ))}
+              <button onClick={tryRestrictedArea} type="button">ROOT</button>
+            </div>
+          </div>
+
+          <div className="patch-bay">
+            {interfaceTabs.map((tab, index) => (
+              <button
+                key={tab.id}
+                className={`cable-port ${activeSocket === tab.id ? "plugged" : ""}`}
+                onClick={() => connectSocket(tab)}
+                type="button"
+                style={{ "--cable-index": index }}
+              >
+                <span className="port-light"></span>
+                <span>{tab.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="deck-actions">
+        <button
+          className="control-chip"
+          onClick={() => {
+            setMuted(!muted);
+            sound.current?.setMuted(!muted);
+          }}
+          type="button"
+        >
+          Sound {muted ? "OFF" : "ON"}
+        </button>
+        <button
+          className="control-chip"
+          onClick={() => {
+            sound.current?.confirm();
+            setRotation({ x: -8, y: -14 });
+          }}
+          type="button"
+        >
+          Recenter 3D
+        </button>
+      </div>
+      <p className="deck-hint">Arraste a máquina para girar. Conecte os cabos para trocar de módulo.</p>
+    </section>
+  );
+};
+
+const programDefinitions = [
+  {
+    id: "experience",
+    title: "experience.exe",
+    label: "Experience",
+    description: "Career log, companies and shipped systems.",
+    prompt: "open /career/history",
+  },
+  {
+    id: "stack",
+    title: "stack.sys",
+    label: "Tech Stack",
+    description: "Languages, cloud, infrastructure and product tools.",
+    prompt: "scan /skills/modules",
+  },
+  {
+    id: "profile",
+    title: "profile.dat",
+    label: "Profile",
+    description: "About, links, education and contact channels.",
+    prompt: "cat /operator/profile",
+  },
+];
+
+const DesktopIcon = ({ program, isActive, onOpen }) => (
+  <button
+    className={`desktop-icon ${isActive ? "active" : ""}`}
+    onClick={onOpen}
+    type="button"
+  >
+    <span className="icon-box">
+      <span>{program.title.slice(0, 3).toUpperCase()}</span>
+    </span>
+    <strong>{program.title}</strong>
+    <small>{program.description}</small>
+  </button>
+);
+
+const ProgramWindow = ({
+  activeProgram,
+  expandedExperience,
+  onClose,
+  onToggleExperience,
+  playClick,
+}) => {
+  if (!activeProgram) {
+    return (
+      <div className="terminal-window idle-window">
+        <div className="window-titlebar">
+          <span>apollo-shell</span>
+          <span className="window-lights"><i></i><i></i><i></i></span>
+        </div>
+        <div className="idle-terminal">
+          <p>&gt; Welcome, operator.</p>
+          <p>&gt; Select a program to inspect the portfolio database.</p>
+          <p>&gt; Available programs: experience.exe, stack.sys, profile.dat</p>
+          <span className="terminal-cursor">_</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="terminal-window program-window">
+      <div className="window-titlebar">
+        <span>{activeProgram.title}</span>
+        <button onClick={onClose} type="button">close</button>
+      </div>
+
+      {activeProgram.id === "experience" && (
+        <div className="program-scroll custom-scrollbar">
+          <p className="command-line">&gt; {activeProgram.prompt}</p>
+          <div className="space-y-2 sm:space-y-3">
+            {experiences.map((exp, idx) => (
+              <ExperienceCard
+                key={exp.company}
+                experience={exp}
+                isExpanded={expandedExperience === idx}
+                onToggle={() => onToggleExperience(idx)}
+                playClick={playClick}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {activeProgram.id === "stack" && (
+        <div className="program-scroll custom-scrollbar">
+          <p className="command-line">&gt; {activeProgram.prompt}</p>
+          <div className="tech-program-grid">
+            {techStack.map((tech) => (
+              <div
+                key={tech.name}
+                className="group tech-tile rounded-lg bg-black/20 border border-cyan-400/20 hover:border-cyan-300/50 hover:bg-cyan-400/10 transition-all duration-300"
+                onMouseEnter={playClick}
+              >
+                <div className="tech-icon-shell">
+                  <img
+                    src={tech.icon}
+                    alt={tech.name}
+                    className={`w-full h-full object-contain opacity-80 group-hover:opacity-100 ${tech.noFilter ? '' : 'filter brightness-0 invert'}`}
+                    onError={(e) => {
+                      const fallbacks = {
+                        'AWS': 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg',
+                        'Remix': 'https://remix.run/img/logo.svg',
+                        'NestJS': 'https://nestjs.com/img/logo-small.svg',
+                        'Terraform': 'https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg',
+                      };
+                      if (fallbacks[tech.name] && e.target.src !== fallbacks[tech.name]) {
+                        e.target.src = fallbacks[tech.name];
+                      } else {
+                        e.target.style.display = 'none';
+                      }
+                    }}
+                  />
+                </div>
+                <span>{tech.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {activeProgram.id === "profile" && (
+        <div className="program-scroll custom-scrollbar">
+          <p className="command-line">&gt; {activeProgram.prompt}</p>
+          <div className="profile-program">
+            <div className="profile-header">
+              <img src="/sostenes.jpeg" alt="Sóstenes Apollo" />
+              <div>
+                <h1>Sóstenes Apollo</h1>
+                <p>Senior Software Engineer / AI Engineer</p>
+                <p>10+ years building scalable software</p>
+              </div>
+            </div>
+            <p>
+              Highly experienced Brazilian Backend Developer specializing in scalable microservices, TDD,
+              full-stack solutions and AI-enabled products. Available for fully remote roles with extensive
+              overlap across APAC, EMEA, and US time zones.
+            </p>
+            <div className="profile-grid">
+              <div>
+                <h3>Education</h3>
+                {education.map((edu) => (
+                  <p key={edu.institution}>{edu.institution} - {edu.degree}</p>
+                ))}
+              </div>
+              <div>
+                <h3>Languages</h3>
+                <p>Portuguese native, English fluent, Spanish intermediate</p>
+              </div>
+            </div>
+            <div className="social-program-links">
+              {socialLinks.map((link) => (
+                <a key={link.name} href={link.url} target="_blank" rel="noreferrer">
+                  <Icon name={link.icon} className="w-4 h-4" />
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default function App() {
   const [expandedExperience, setExpandedExperience] = useState(0);
-  const [activeTab, setActiveTab] = useState('about');
+  const [activeProgramId, setActiveProgramId] = useState(null);
+  const [bootComplete, setBootComplete] = useState(false);
+  const [bootStep, setBootStep] = useState(0);
+  const [muted, setMuted] = useState(false);
+  const [audioArmed, setAudioArmed] = useState(false);
+  const sound = useRef(null);
+
+  if (!sound.current && typeof window !== "undefined") {
+    sound.current = createSoundEngine();
+  }
 
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine);
+  }, []);
+
+  useEffect(() => {
+    const stepTimers = bootLines.map((_, index) => (
+      window.setTimeout(() => {
+        setBootStep(index + 1);
+        sound.current?.confirm();
+      }, 450 + index * 420)
+    ));
+    const completeTimer = window.setTimeout(() => {
+      setBootComplete(true);
+      sound.current?.power();
+    }, 3100);
+
+    return () => {
+      stepTimers.forEach(window.clearTimeout);
+      window.clearTimeout(completeTimer);
+    };
   }, []);
 
   const toggleExperience = (idx) => {
     setExpandedExperience(expandedExperience === idx ? null : idx);
   };
 
+  const armAudio = () => {
+    if (audioArmed) {
+      return;
+    }
+    setAudioArmed(true);
+    sound.current?.power();
+  };
+
+  const openProgram = (programId) => {
+    armAudio();
+    setActiveProgramId(programId);
+    sound.current?.click();
+  };
+
+  const activeProgram = useMemo(
+    () => programDefinitions.find((program) => program.id === activeProgramId),
+    [activeProgramId]
+  );
+
   return (
-    <div className="min-h-screen overflow-hidden relative">
-      {/* Animated Gradient Background - Blue/Black */}
-      <div className="fixed inset-0 bg-gradient-to-br from-black via-slate-900 to-black animate-gradient-shift"></div>
+    <div
+      className="min-h-screen overflow-hidden relative bg-black"
+      onPointerDown={armAudio}
+    >
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.2),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(168,85,247,0.16),transparent_25%),linear-gradient(135deg,#020617,#050816_45%,#000)] animate-gradient-shift"></div>
+      <div className="fixed inset-0 industrial-grid"></div>
       
       {/* Particles Background */}
       <div className="fixed inset-0 z-0 opacity-30">
@@ -276,12 +780,12 @@ export default function App() {
               },
             },
             particles: {
-              color: { value: "#3b82f6" },
+              color: { value: ["#22d3ee", "#a855f7", "#f59e0b"] },
               links: {
-                color: "#2563eb",
+                color: "#22d3ee",
                 distance: 150,
                 enable: true,
-                opacity: 0.2,
+                opacity: 0.22,
                 width: 1,
               },
               move: {
@@ -302,201 +806,80 @@ export default function App() {
         />
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 min-h-screen lg:h-screen flex items-start justify-center p-3 sm:p-4 md:p-6 lg:p-8 py-4 sm:py-6">
-        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:items-stretch lg:h-full">
-          
-          {/* Left Column - About & Social */}
-          <div className="flex flex-col gap-4 lg:h-full">
-            <div className="glass-card p-4 sm:p-6 rounded-xl backdrop-blur-xl bg-black/40 border border-blue-500/20 animate-fade-in lg:h-full flex flex-col">
-              <div className="flex flex-col gap-4 sm:gap-6 flex-1 overflow-y-auto custom-scrollbar">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-                  <div className="relative flex-shrink-0 mx-auto sm:mx-0">
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full blur-xl opacity-50 animate-pulse"></div>
-                    <img
-                      src="/me.png"
-                      alt="Sóstenes Apollo"
-                      className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-blue-500/50 object-cover shadow-2xl"
-                      onError={(e) => {
-                        e.target.src = 'https://via.placeholder.com/96?text=SA';
-                      }}
-                    />
-                  </div>
-                  <div className="flex-1 text-center sm:text-left">
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
-                      Sóstenes Apollo
-                    </h1>
-                    <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 text-xs sm:text-sm md:text-base text-gray-300 mb-2 sm:mb-3">
-                      <span className="text-blue-400 font-medium">Sênior Software Engineer</span>
-                      <span className="text-gray-600 hidden sm:inline">•</span>
-                      <span className="text-blue-400 font-medium">AI Engineer</span>
-                      {/* <span className="text-gray-600 hidden sm:inline">•</span> */}
-                      <span className="text-white">10+ years of experience build Scalable Software</span>
-                    </div>
-                    <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-4 text-xs sm:text-sm text-gray-400">
-                      <span className="flex items-center gap-1">
-                        <span>📍</span> Brazil
-                      </span>
-                      <span className="flex items-center gap-1 break-all">
-                        <span>📧</span> <span className="text-xs sm:text-sm">sostenesapollo25@gmail.com</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-3">
-                  {socialLinks.map((link, idx) => (
-                    <a
-                      key={idx}
-                      href={link.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group relative p-2 sm:p-3 rounded-lg bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-400/50 hover:scale-110 transition-all duration-300 flex items-center justify-center glow-blue"
-                      title={link.name}
-                    >
-                      <Icon name={link.icon} className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
-                    </a>
-                  ))}
-                </div>
-                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                Highly experienced Brazilian Backend Developer specializing in scalable microservices, TDD, and full-stack solutions. Proven expertise in Node.js, TypeScript, Python, C#, and modern frameworks like NestJS and NextJS. Skilled in DevOps, including Docker, Kubernetes, Kafka, and cloud platforms (AWS, GCP, Digital Ocean).
-                <br />
-                <br />
-                Available for fully remote roles with extensive overlap across APAC, EMEA, and US time zones.
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-gray-300">
-                  <div className="p-3 rounded-lg bg-black/30 border border-blue-500/20">
-                    <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Soft Skills</h4>
-                    <p className="text-gray-400 text-xs sm:text-sm">Communication, flexibility, time management, attention to detail</p>
-                  </div>
-                  <div className="p-3 rounded-lg bg-black/30 border border-blue-500/20">
-                    <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">Languages</h4>
-                    <p className="text-gray-400 text-xs sm:text-sm">Portuguese (native), English (fluent), Spanish (intermediate)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <main className="fullscreen-computer">
+        <section className="monitor-frame" aria-label="Full screen retro computer portfolio">
+          <div className="monitor-topbar">
+            <span>APOLLO_OS v10.6</span>
+            <span>{bootComplete ? "READY" : "BOOTING"}</span>
+            <button
+              onClick={() => {
+                setMuted(!muted);
+                sound.current?.setMuted(!muted);
+              }}
+              type="button"
+            >
+              SOUND {muted ? "OFF" : "ON"}
+            </button>
           </div>
 
-          {/* Right Column - Tabs and Content */}
-          <div className="flex flex-col gap-4 min-h-[400px] lg:h-full">
-            <div className="glass-card p-3 sm:p-4 rounded-xl backdrop-blur-xl bg-black/40 border border-blue-500/20 flex flex-col h-full min-h-[500px] lg:min-h-0">
-              <div className="flex flex-wrap gap-2 mb-4 flex-shrink-0">
-                <button
-                  onClick={() => setActiveTab('about')}
-                  className={`px-3 sm:px-4 md:px-6 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 flex-1 sm:flex-none ${
-                    activeTab === 'about'
-                      ? 'bg-blue-500/20 border border-blue-400/50 text-white glow-blue-text'
-                      : 'bg-black/20 border border-blue-500/20 text-gray-400 hover:text-white hover:border-blue-400/30'
-                  }`}
-                >
-                  Experience
-                </button>
-                <button
-                  onClick={() => setActiveTab('tech')}
-                  className={`px-3 sm:px-4 md:px-6 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 flex-1 sm:flex-none ${
-                    activeTab === 'tech'
-                      ? 'bg-blue-500/20 border border-blue-400/50 text-white glow-blue-text'
-                      : 'bg-black/20 border border-blue-500/20 text-gray-400 hover:text-white hover:border-blue-400/30'
-                  }`}
-                >
-                  Tech Stack
-                </button>
-                <button
-                  onClick={() => setActiveTab('education')}
-                  className={`px-3 sm:px-4 md:px-6 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 flex-1 sm:flex-none ${
-                    activeTab === 'education'
-                      ? 'bg-blue-500/20 border border-blue-400/50 text-white glow-blue-text'
-                      : 'bg-black/20 border border-blue-500/20 text-gray-400 hover:text-white hover:border-blue-400/30'
-                  }`}
-                >
-                  Education
-                </button>
+          <div className="monitor-screen">
+            <div className="screen-scanlines"></div>
+            {!bootComplete ? (
+              <div className="boot-screen">
+                <div className="boot-logo">SOSTENES APOLLO</div>
+                <p className="loading-text">loading portfolio kernel...</p>
+                <div className="boot-progress">
+                  <span style={{ width: `${Math.min(100, (bootStep / bootLines.length) * 100)}%` }}></span>
+                </div>
+                <div className="boot-lines">
+                  {bootLines.slice(0, bootStep).map((line) => (
+                    <p key={line}>&gt; {line}</p>
+                  ))}
+                  <p className="boot-cursor">&gt; loading...</p>
+                </div>
               </div>
+            ) : (
+              <div className="desktop-shell">
+                <header className="desktop-header">
+                  <div>
+                    <p className="command-line">&gt; login operator@sostenes</p>
+                    <h1>Sóstenes Apollo</h1>
+                    <span>Senior Software Engineer / AI Engineer</span>
+                  </div>
+                  <div className="desktop-status">
+                    <span>AUDIO: {muted ? "MUTED" : audioArmed ? "ARMED" : "CLICK TO ARM"}</span>
+                    <span>SESSION: REMOTE_READY</span>
+                  </div>
+                </header>
 
-              <div className="flex-1 overflow-hidden min-h-0 flex flex-col">
-                {activeTab === 'about' && (
-                  <div className="flex-1 overflow-y-auto custom-scrollbar space-y-2 sm:space-y-3 animate-fade-in pr-1 min-h-0">
-                    {experiences.map((exp, idx) => (
-                      <ExperienceCard
-                        key={idx}
-                        experience={exp}
-                        isExpanded={expandedExperience === idx}
-                        onToggle={() => toggleExperience(idx)}
+                <div className="desktop-grid">
+                  <aside className="program-dock">
+                    {programDefinitions.map((program) => (
+                      <DesktopIcon
+                        key={program.id}
+                        program={program}
+                        isActive={activeProgramId === program.id}
+                        onOpen={() => openProgram(program.id)}
                       />
                     ))}
-                  </div>
-                )}
+                  </aside>
 
-                {activeTab === 'tech' && (
-                  <div className="flex-1 overflow-y-auto custom-scrollbar animate-fade-in pr-1 min-h-0">
-                    <div className="p-3 sm:p-4 md:p-6">
-                      <h2 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 glow-blue-text">Technologies</h2>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-                        {techStack.map((tech, idx) => (
-                          <div
-                            key={idx}
-                            className="group p-2 sm:p-3 md:p-4 rounded-lg bg-black/20 border border-blue-500/20 hover:border-blue-400/50 hover:bg-blue-500/10 transition-all duration-300 cursor-pointer"
-                          >
-                            <div className="flex flex-col items-center space-y-1 sm:space-y-2">
-                              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg bg-black/40 p-1 sm:p-2 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <img
-                                  src={tech.icon}
-                                  alt={tech.name}
-                                  className={`w-full h-full object-contain opacity-80 group-hover:opacity-100 ${tech.noFilter ? '' : 'filter brightness-0 invert'}`}
-                                  onError={(e) => {
-                                    // Try fallback URLs for problematic icons
-                                    const fallbacks = {
-                                      'AWS': 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg',
-                                      'Remix': 'https://remix.run/img/logo.svg',
-                                      'NestJS': 'https://nestjs.com/img/logo-small.svg',
-                                      'Terraform': 'https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg',
-                                    };
-                                    if (fallbacks[tech.name] && e.target.src !== fallbacks[tech.name]) {
-                                      e.target.src = fallbacks[tech.name];
-                                    } else {
-                                      e.target.style.display = 'none';
-                                    }
-                                  }}
-                                />
-                              </div>
-                              <span className="text-white text-[10px] sm:text-xs font-medium text-center leading-tight">{tech.name}</span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {activeTab === 'education' && (
-                  <div className="flex-1 overflow-y-auto custom-scrollbar animate-fade-in pr-1 min-h-0">
-                    <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4">
-                      <h2 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 glow-blue-text">Education</h2>
-                      {education.map((edu, idx) => (
-                        <div key={idx} className="p-3 sm:p-4 rounded-lg bg-black/20 border border-blue-500/20">
-                          <h3 className="text-white font-semibold mb-1 text-sm sm:text-base">{edu.institution}</h3>
-                          <p className="text-gray-400 text-xs sm:text-sm">{edu.degree}</p>
-                        </div>
-                      ))}
-                      {/* Separator */}
-                      <div className="h-px w-full bg-gray-800 my-4"></div>
-                      
-                      <div className="mt-4 sm:mt-6 p-3 sm:p-4 rounded-lg bg-black/20 border border-blue-500/20">
-                        <h3 className="text-white font-semibold mb-2 sm:mb-3 text-sm sm:text-base">Soft Skills</h3>
-                        <p className="text-gray-400 text-xs sm:text-sm">Communication, flexibility, time management, attention to detail</p>
-                      </div>
-                      <div className="p-3 sm:p-4 rounded-lg bg-black/20 border border-blue-500/20">
-                        <h3 className="text-white font-semibold mb-2 sm:mb-3 text-sm sm:text-base">Languages</h3>
-                        <p className="text-gray-400 text-xs sm:text-sm">Portuguese (native), English (fluent), Spanish (intermediate)</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                  <ProgramWindow
+                    activeProgram={activeProgram}
+                    expandedExperience={expandedExperience}
+                    onClose={() => {
+                      setActiveProgramId(null);
+                      sound.current?.click();
+                    }}
+                    onToggleExperience={toggleExperience}
+                    playClick={() => sound.current?.click()}
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 }
