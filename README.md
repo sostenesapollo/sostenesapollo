@@ -7,10 +7,9 @@ I build small tools that solve one specific thing, then let them run.
 | | |
 |---|---|
 | **[Gifts QR](https://giftsqr.com)** | 34 interactive gift pages you can make in 3 minutes and send as a link or a QR code. 179k gifts created. |
-| **[blocks.pw](https://blocks.pw)** | 30-second reflex and memory duels in the browser. No install. |
 | **[TraduBook](https://tradubook.com)** | Translate a whole book with AI, keeping footnotes, italics and layout. |
 | **[PedeGás](https://pedegas.com)** | Gas delivery and business management for small distributors. |
-| **[FindClients](https://findclients.com)** | B2B lead radar for local businesses. |
+| **[FindClients](https://findclientsapp.com)** | B2B lead radar for local businesses. |
 | **[AmazonBests](https://amazonbests.com)** | Compare products and find the actual best deal. |
 | **[Claudevid](https://claudevid.com)** | Turn long videos into short clips. |
 
